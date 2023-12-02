@@ -1,7 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { Button, Card, CardContent, Typography } from '@mui/material';
+import { Button, Card, CardContent, Typography, Box, SvgIcon } from '@mui/material';
 import './UserProfile.scss';
+import {PROFILE_ICON} from "../../utils/constants";
 
 // interface UserProfileProps {
 //   user: {
@@ -16,9 +17,14 @@ const UserProfile: React.FC = () => {
   return (
     <Card className="user-profile">
       <CardContent>
-        <Typography variant="h2" component="h2">
-          Екатерина
-        </Typography>
+        <Box display="flex" flexDirection='row'>
+          <SvgIcon>
+            {PROFILE_ICON}
+          </SvgIcon>
+          <Typography variant="h2" component="h2">
+            Екатерина
+          </Typography>
+        </Box>
         <Typography variant="body1" component="p">
           Текущая цель:
         </Typography>
