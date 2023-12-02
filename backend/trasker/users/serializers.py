@@ -7,7 +7,6 @@ from users.models import User
 
 class UserReadSerializer(serializers.ModelSerializer):
     """Просмотр пользователя"""
-    is_subscribed = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -17,7 +16,6 @@ class UserReadSerializer(serializers.ModelSerializer):
             'username',
             'first_name',
             'last_name',
-            'is_subscribed',
         )
 
 

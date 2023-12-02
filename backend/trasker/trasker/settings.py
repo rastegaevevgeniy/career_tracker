@@ -141,7 +141,7 @@ AUTH_USER_MODEL = 'users.User'
 
 #FILE_INGREDIENTS = os.path.join(BASE_DIR, 'data/ingredients.csv')
 #FILE_TAGS = os.path.join(BASE_DIR, 'data/tags.csv')
-#FILE_USERS = os.path.join(BASE_DIR, 'data/users.csv')
+FILE_USERS = os.path.join(BASE_DIR, 'data/users.csv')
 
 #MODEL_STR_LIMIT = 15
 #LENGTH7 = 7
