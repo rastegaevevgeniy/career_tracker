@@ -1,0 +1,48 @@
+.user-profile {
+  max-width: 124px;
+  min-height: 100px;
+  margin: 0 auto;
+  padding: 8px;
+  color: #000;
+  display: flex;
+
+  .MuiCardContent-root {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:last-child {
+      padding-bottom: 0px;
+    }
+  }
+
+  .MuiTypography-h2 {
+    font-weight: bold;
+    font-size: 11px;
+  }
+
+  .MuiTypography-body1 {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .MuiTypography-body2 {
+    font-size: 13px;
+    line-height: 1.23;
+  }
+
+  .MuiButton-root {
+    all: unset;
+    margin-top: 8px;
+    font-size: 11px;
+    color: #1D6BF3;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #FFF;
+      box-shadow: none;
+    }
+  }
+}
