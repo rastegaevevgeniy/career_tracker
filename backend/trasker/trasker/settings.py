@@ -141,9 +141,18 @@ AUTH_USER_MODEL = 'users.User'
 
 #FILE_INGREDIENTS = os.path.join(BASE_DIR, 'data/ingredients.csv')
 #FILE_TAGS = os.path.join(BASE_DIR, 'data/tags.csv')
-FILE_USERS = os.path.join(BASE_DIR, 'data/users.csv')
+FILE = {
+    'user': os.path.join(BASE_DIR, 'data/users.csv'),
+    'training_program': os.path.join(BASE_DIR, 'data/training_program.csv'),
+    'skill': os.path.join(BASE_DIR, 'data/skill.csv'),
+    'course': os.path.join(BASE_DIR, 'data/course.csv'),
+    'course_skill': os.path.join(BASE_DIR, 'data/course_skill.csv'),
+    'lesson': os.path.join(BASE_DIR, 'data/lesson.csv'),
+    'profession': os.path.join(BASE_DIR, 'data/profession.csv'),
+    
+}
 
-#MODEL_STR_LIMIT = 15
+MODEL_STR_LIMIT = 15
 #LENGTH7 = 7
 LENGTH16 = 30
 #LENGTH50 = 50

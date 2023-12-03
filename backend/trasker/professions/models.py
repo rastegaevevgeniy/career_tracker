@@ -50,7 +50,7 @@ class TrainingProgram(BaseName):
 class Course(BaseName):
     """Модель курса обучения."""
     skill = models.ManyToManyField(
-        Skill,
+        Skill, through='CourseSkill',
         verbose_name='Навыки',
     )
     training_program = models.ForeignKey(
@@ -74,7 +74,26 @@ class Course(BaseName):
         verbose_name = 'Курс'
         verbose_name_plural = 'Курсы'
         default_related_name = 'courses'
+        constraints = ([models.UniqueConstraint(
+            fields=['name', 'training_program'],
+            name='name_training_program')])
 
+
+class CourseSkill(models.Model):
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+    )
+    skill = models.ForeignKey(
+        Skill,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        default_related_name = 'courses_skills'
+        constraints = ([models.UniqueConstraint(
+            fields=['course', 'skill'],
+            name='course_skill')])
 
 class Lesson(BaseName):
     """Модель лекции."""
@@ -92,6 +111,9 @@ class Lesson(BaseName):
         verbose_name = 'Лекция'
         verbose_name_plural = 'Лекции'
         default_related_name = 'lessions'
+        constraints = ([models.UniqueConstraint(
+            fields=['name', 'course'],
+            name='name_course')])
 
 
 class Profession(BaseName):
@@ -101,11 +123,11 @@ class Profession(BaseName):
         verbose_name='Уровень'
     )
     skills =  models.ManyToManyField(
-        Skill,
+        Skill, through='ProfessionSkill',
         verbose_name='Навыки',
     )
     course = models.ManyToManyField(
-        Course,
+        Course, through='ProfessionCourse',
         verbose_name='Курсы',
     )
 
@@ -113,7 +135,42 @@ class Profession(BaseName):
         verbose_name = 'Профессия'
         verbose_name_plural = 'Профессии'
         default_related_name = 'professions'
+        constraints = ([models.UniqueConstraint(
+            fields=['name', 'level'],
+            name='name_level')])
 
+class ProfessionSkill(models.Model):
+    profession = models.ForeignKey(
+        Profession,
+        on_delete=models.CASCADE 
+    )
+    skill = models.ForeignKey(
+        Skill,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        default_related_name = 'professions_skills'
+        constraints = ([models.UniqueConstraint(
+            fields=['profession', 'skill'],
+            name='profession_skill')])
+
+
+class ProfessionCourse(models.Model):
+    profession = models.ForeignKey(
+        Profession,
+        on_delete=models.CASCADE 
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        default_related_name = 'professions_courses'
+        constraints = ([models.UniqueConstraint(
+            fields=['profession', 'course'],
+            name='profession_course')])
 
 class RecruitmentCompany(BaseName):
     """Модель рекрутинговой компании."""
@@ -179,7 +236,9 @@ class CourseUser(BaseUser):
         verbose_name = 'Курс пользователя'
         verbose_name_plural = 'Курсы пользователя'
         default_related_name = 'course_users'
-
+        constraints = ([models.UniqueConstraint(
+            fields=['user', 'course'],
+            name='user_course')])
 
 
 class LessionUser(BaseUser):
@@ -197,6 +256,9 @@ class LessionUser(BaseUser):
         verbose_name = 'Лекция пользователя'
         verbose_name_plural = 'Лекции пользователя'
         default_related_name = 'leksion_users'
+        constraints = ([models.UniqueConstraint(
+            fields=['user', 'lession'],
+            name='user_lession')])
 
 
 class ProfessionUser(BaseUser):
@@ -210,3 +272,6 @@ class ProfessionUser(BaseUser):
         verbose_name = 'Профессия пользователя'
         verbose_name_plural = 'профессии пользователя'
         default_related_name = 'profession_users'
+        constraints = ([models.UniqueConstraint(
+            fields=['user', 'profession'],
+            name='user_profession')])
