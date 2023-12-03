@@ -8,7 +8,8 @@ from users.models import User
 class BaseName(models.Model):
     """Абстрактный класс модели с именем."""
     name = models.TextField(
-        max_length=settings.LENGTH16,
+        max_length=settings.LENGTH50,
+        unique=True,
         verbose_name='Имя'
     )
 
@@ -18,6 +19,7 @@ class BaseName(models.Model):
 
     def __str__(self):
         return self.name[:settings.MODEL_STR_LIMIT]
+
 
 class BaseUser(models.Model):
     """Абстрактная модель пользователя."""
@@ -95,6 +97,7 @@ class CourseSkill(models.Model):
             fields=['course', 'skill'],
             name='course_skill')])
 
+
 class Lesson(BaseName):
     """Модель лекции."""
     duration_training = models.PositiveSmallIntegerField(
@@ -118,11 +121,15 @@ class Lesson(BaseName):
 
 class Profession(BaseName):
     """Класс проффессии."""
+    name = models.TextField(
+        max_length=settings.LENGTH50,
+        verbose_name='Имя'
+    )
     level = models.TextField(
         max_length=settings.LENGTH16,
         verbose_name='Уровень'
     )
-    skills =  models.ManyToManyField(
+    skills = models.ManyToManyField(
         Skill, through='ProfessionSkill',
         verbose_name='Навыки',
     )
@@ -139,10 +146,11 @@ class Profession(BaseName):
             fields=['name', 'level'],
             name='name_level')])
 
+
 class ProfessionSkill(models.Model):
     profession = models.ForeignKey(
         Profession,
-        on_delete=models.CASCADE 
+        on_delete=models.CASCADE
     )
     skill = models.ForeignKey(
         Skill,
@@ -159,7 +167,7 @@ class ProfessionSkill(models.Model):
 class ProfessionCourse(models.Model):
     profession = models.ForeignKey(
         Profession,
-        on_delete=models.CASCADE 
+        on_delete=models.CASCADE
     )
     course = models.ForeignKey(
         Course,
@@ -172,12 +180,11 @@ class ProfessionCourse(models.Model):
             fields=['profession', 'course'],
             name='profession_course')])
 
+
 class RecruitmentCompany(BaseName):
     """Модель рекрутинговой компании."""
-    company_icon = models.ImageField(
-        upload_to='icon_image/',
-        verbose_name='Иконка',
-        null=True
+    link_ikon = models.URLField(
+        max_length=settings.LENGTH254,
     )
 
     class Meta:
@@ -209,7 +216,7 @@ class Vacancy(BaseName):
         verbose_name='Профессия',
     )
     skills = models.ManyToManyField(
-        Skill,
+        Skill, through='VacancySkill',
         verbose_name='Навыки',
     )
     link_vacancy = models.URLField(
@@ -221,6 +228,23 @@ class Vacancy(BaseName):
         verbose_name_plural = 'Вакансии'
 
 
+class VacancySkill(models.Model):
+    vacancy = models.ForeignKey(
+        Vacancy,
+        on_delete=models.CASCADE
+    )
+    skill = models.ForeignKey(
+        Skill,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        default_related_name = 'vacancy_skills'
+        constraints = ([models.UniqueConstraint(
+            fields=['vacancy', 'skill'],
+            name='vacancy_skill')])
+
+
 class CourseUser(BaseUser):
     """Модель курсов пользователя."""
     course = models.ForeignKey(
@@ -229,7 +253,7 @@ class CourseUser(BaseUser):
         verbose_name='Курсы',
     )
     date = models.DateTimeField(
-        'Дата',
+        'Дата подписки на курс',
     )
 
     class Meta:
@@ -241,15 +265,15 @@ class CourseUser(BaseUser):
             name='user_course')])
 
 
-class LessionUser(BaseUser):
+class LessonUser(BaseUser):
     """Модель лекций пользователя."""
-    lession = models.ForeignKey(
+    lesson = models.ForeignKey(
         Lesson,
         on_delete=models.CASCADE,
         verbose_name='Пользователь',
     )
     date = models.DateTimeField(
-        'Дата',
+        'Дата завершения лекции',
     )
 
     class Meta:
@@ -257,7 +281,7 @@ class LessionUser(BaseUser):
         verbose_name_plural = 'Лекции пользователя'
         default_related_name = 'leksion_users'
         constraints = ([models.UniqueConstraint(
-            fields=['user', 'lession'],
+            fields=['user', 'lesson'],
             name='user_lession')])
 
 
