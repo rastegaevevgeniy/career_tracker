@@ -1,0 +1,4 @@
+username,password,email,first_name,last_name
+test1,test1,test1@yandex.ru,имя_тест1,фамилия_тест1
+test2,test2,test2@yandex.ru,имя_тест2,фамилия_тест2
+test3,test3,test3@yandex.ru,имя_тест3,фамилия_тест3
