@@ -15,7 +15,7 @@ import {PROFILE_ICON} from "../../utils/constants";
 
 const UserProfile: React.FC = () => {
   return (
-    <Card className="user-profile">
+    <Card className="user-profile" style={{ borderRadius: 8 }}>
       <CardContent>
         <Box display="flex" flexDirection='row'>
           <SvgIcon>

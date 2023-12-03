@@ -6,8 +6,18 @@
   color: #000;
   display: flex;
 
-  .css-bhp9pd-MuiPaper-root-MuiCard-root {
-    border-radius: 8px;
+  .MuiBox-root { 
+    align-items: center;
+    padding-top: 2px;
+  }
+
+  .MuiTypography-h2{ 
+    padding-top: 3px;
+  }
+
+  .MuiTypography-body1 {
+    padding-top: 12px;
+    font-size: 11px;
   }
 
   .MuiCardContent-root {
@@ -33,10 +43,7 @@
     font-size: 11px;
   }
 
-  .MuiTypography-body1 {
-    margin-top: 8px;
-    font-size: 11px;
-  }
+  
 
   .MuiTypography-body2 {
     font-size: 13px;

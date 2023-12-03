@@ -10,7 +10,6 @@ export default function App() {
     <div className="App">
       <Header />
       <Menu />
-      {/* меню */}
       <Routes>
         <Route path="/" element={<Main />}/>
         <Route path="/recommendations" element={<Main />}/>

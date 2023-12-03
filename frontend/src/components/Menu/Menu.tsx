@@ -49,7 +49,7 @@ const Menu: React.FC = () => {
       <UserProfile />
 
       <Box sx={{ width: '100%' }} className="menu__container-top">
-        <nav aria-label="vacancies workshop diary">
+        <nav aria-label="vacancies workshop diary" className='menu__nav'>
           <List>
             {['Вакансии', 'Мастерская', 'Дневник'].map((text, index) => (
               <ListItem key={text} disablePadding>
