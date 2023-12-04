@@ -139,22 +139,28 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.User'
 
-#FILE_INGREDIENTS = os.path.join(BASE_DIR, 'data/ingredients.csv')
-#FILE_TAGS = os.path.join(BASE_DIR, 'data/tags.csv')
 FILE = {
     'user': os.path.join(BASE_DIR, 'data/users.csv'),
-    'training_program': os.path.join(BASE_DIR, 'data/training_program.csv'),
+    'direction_training': os.path.join(BASE_DIR, 'data/direction_training.csv'),
     'skill': os.path.join(BASE_DIR, 'data/skill.csv'),
     'course': os.path.join(BASE_DIR, 'data/course.csv'),
     'course_skill': os.path.join(BASE_DIR, 'data/course_skill.csv'),
     'lesson': os.path.join(BASE_DIR, 'data/lesson.csv'),
     'profession': os.path.join(BASE_DIR, 'data/profession.csv'),
-    
+    'profession_skill': os.path.join(BASE_DIR, 'data/profession_skill.csv'),
+    'profession_course': os.path.join(BASE_DIR, 'data/profession_course.csv'),
+    'recruitment_company': os.path.join(BASE_DIR, 'data/recruitment_company.csv'),
+    'vacancy': os.path.join(BASE_DIR, 'data/vacancy.csv'),
+    'vacancy_skills': os.path.join(BASE_DIR, 'data/vacancy_skills.csv'),
+    'course_user': os.path.join(BASE_DIR, 'data/course_user.csv'),
+    'lesson_user': os.path.join(BASE_DIR, 'data/lesson_user.csv'),
+    'profession_user': os.path.join(BASE_DIR, 'data/profession_user.csv'),
 }
 
-MODEL_STR_LIMIT = 15
+DATE = '%Y-%m-%d'
+#MODEL_STR_LIMIT = 15
 #LENGTH7 = 7
 LENGTH16 = 30
-#LENGTH50 = 50
+LENGTH50 = 50
 LENGTH150 = 150
 LENGTH254 = 254

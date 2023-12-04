@@ -1,4 +1,3 @@
-name,level
-Профессия 1,junior
-Профессия 1,middle
-Профессия 3,middle
+name,level,salary
+Продакт-менеджер,Middle,165000
+Продакт-менеджер,junior,95000
