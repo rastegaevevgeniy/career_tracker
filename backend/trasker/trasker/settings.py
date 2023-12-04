@@ -143,7 +143,7 @@ AUTH_USER_MODEL = 'users.User'
 #FILE_TAGS = os.path.join(BASE_DIR, 'data/tags.csv')
 FILE = {
     'user': os.path.join(BASE_DIR, 'data/users.csv'),
-    'training_program': os.path.join(BASE_DIR, 'data/training_program.csv'),
+    'direction_training': os.path.join(BASE_DIR, 'data/direction_training.csv'),
     'skill': os.path.join(BASE_DIR, 'data/skill.csv'),
     'course': os.path.join(BASE_DIR, 'data/course.csv'),
     'course_skill': os.path.join(BASE_DIR, 'data/course_skill.csv'),
@@ -160,7 +160,7 @@ FILE = {
 }
 
 DATE = '%Y-%m-%d'
-MODEL_STR_LIMIT = 15
+#MODEL_STR_LIMIT = 15
 #LENGTH7 = 7
 LENGTH16 = 30
 LENGTH50 = 50

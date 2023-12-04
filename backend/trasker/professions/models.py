@@ -18,7 +18,7 @@ class BaseName(models.Model):
         ordering = ('name', )
 
     def __str__(self):
-        return self.name[:settings.MODEL_STR_LIMIT]
+        return self.name
 
 
 class BaseUser(models.Model):
@@ -41,9 +41,8 @@ class Skill(BaseName):
         verbose_name_plural = 'Навыки'
 
 
-class TrainingProgram(BaseName):
-    """Модель программы обучения."""
-
+class Direction_training(BaseName):
+    """Модель  направления обучения."""
     class Meta:
         verbose_name = 'Программа'
         verbose_name_plural = 'Программы'
@@ -51,12 +50,16 @@ class TrainingProgram(BaseName):
 
 class Course(BaseName):
     """Модель курса обучения."""
+    description = models.TextField(
+        max_length=settings.LENGTH254,
+        verbose_name='Описание'
+    )
     skill = models.ManyToManyField(
         Skill, through='CourseSkill',
         verbose_name='Навыки',
     )
-    training_program = models.ForeignKey(
-        TrainingProgram,
+    direction_training = models.ForeignKey(
+        Direction_training,
         on_delete=models.CASCADE,
         verbose_name='Профессия',
     )
@@ -77,8 +80,8 @@ class Course(BaseName):
         verbose_name_plural = 'Курсы'
         default_related_name = 'courses'
         constraints = ([models.UniqueConstraint(
-            fields=['name', 'training_program'],
-            name='name_training_program')])
+            fields=['name', 'direction_training'],
+            name='name_direction_training')])
 
 
 class CourseSkill(models.Model):
@@ -128,6 +131,10 @@ class Profession(BaseName):
     level = models.TextField(
         max_length=settings.LENGTH16,
         verbose_name='Уровень'
+    )
+    salary = models.PositiveSmallIntegerField(
+        verbose_name='Заработная плата',
+        validators=[MinValueValidator(1)]
     )
     skills = models.ManyToManyField(
         Skill, through='ProfessionSkill',
