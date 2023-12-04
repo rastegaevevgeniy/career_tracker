@@ -7,7 +7,7 @@ from django.core.management import BaseCommand
 from professions.models import (Course, CourseSkill, CourseUser, Lesson,
                                 LessonUser, Profession, ProfessionCourse,
                                 ProfessionSkill, ProfessionUser,
-                                RecruitmentCompany, Skill, Direction_training,
+                                RecruitmentCompany, Skill, DirectionTraining,
                                 Vacancy, VacancySkill)
 from users.models import User
 
@@ -19,8 +19,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         loading_data()
 
+
 def print_error(*value):
     print(ERROR_LOAD, value)
+
 
 def print_result(*value):
     print(RESULT_LOAD, value)
@@ -43,10 +45,10 @@ def loading_user():
 def loading_direction_training():
     for row in DictReader(open(settings.FILE['direction_training'], 'r',
                                encoding='utf-8')):
-        if Direction_training.objects.filter(name=row['name']).exists():
+        if DirectionTraining.objects.filter(name=row['name']).exists():
             print_error(row['name'])
         else:
-            Direction_training(name=row['name']).save()
+            DirectionTraining(name=row['name']).save()
     print_result(settings.FILE['direction_training'])
 
 
@@ -67,8 +69,8 @@ def loading_course():
             print_error(row['name'])
         else:
             Course(name=row['name'],
-                   direction_training=(Direction_training.objects.
-                                     get(id=int(row['direction_training']))),
+                   direction_training=(DirectionTraining.objects.
+                                       get(id=int(row['direction_training']))),
                    description=row['description'],
                    course_cost_full=int(row['course_cost_full']),
                    course_per_month=int(row['course_per_month']),
@@ -168,8 +170,8 @@ def loading_recruitmentcompany():
 def loading_vacancy():
     for row in DictReader(open(settings.FILE['vacancy'], 'r',
                                encoding='utf-8')):
-        if Vacancy.objects.filter(name=row['name']).exists():
-            print_error(row['name'])
+        if Vacancy.objects.filter(link_vacancy=row['link_vacancy']).exists():
+            print_error(row['link_vacancy'])
         else:
             Vacancy(
                 name=row['name'],

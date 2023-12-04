@@ -139,8 +139,6 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.User'
 
-#FILE_INGREDIENTS = os.path.join(BASE_DIR, 'data/ingredients.csv')
-#FILE_TAGS = os.path.join(BASE_DIR, 'data/tags.csv')
 FILE = {
     'user': os.path.join(BASE_DIR, 'data/users.csv'),
     'direction_training': os.path.join(BASE_DIR, 'data/direction_training.csv'),

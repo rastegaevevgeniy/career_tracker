@@ -41,7 +41,7 @@ class Skill(BaseName):
         verbose_name_plural = 'Навыки'
 
 
-class Direction_training(BaseName):
+class DirectionTraining(BaseName):
     """Модель  направления обучения."""
     class Meta:
         verbose_name = 'Программа'
@@ -59,7 +59,7 @@ class Course(BaseName):
         verbose_name='Навыки',
     )
     direction_training = models.ForeignKey(
-        Direction_training,
+        DirectionTraining,
         on_delete=models.CASCADE,
         verbose_name='Профессия',
     )
@@ -192,6 +192,7 @@ class RecruitmentCompany(BaseName):
     """Модель рекрутинговой компании."""
     link_ikon = models.URLField(
         max_length=settings.LENGTH254,
+        unique=True,
     )
 
     class Meta:
@@ -201,6 +202,10 @@ class RecruitmentCompany(BaseName):
 
 class Vacancy(BaseName):
     """Модель вакансии."""
+    name = models.TextField(
+        max_length=settings.LENGTH50,
+        verbose_name='Имя'
+    )
     recruter = models.ForeignKey(
         RecruitmentCompany,
         on_delete=models.CASCADE,
@@ -228,6 +233,7 @@ class Vacancy(BaseName):
     )
     link_vacancy = models.URLField(
         max_length=settings.LENGTH254,
+        unique=True,
     )
 
     class Meta:
