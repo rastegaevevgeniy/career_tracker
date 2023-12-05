@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Menu.scss";
 import UserProfile from '../UserProfile/UserProfile';
 import Box from '@mui/material/Box';
@@ -28,7 +28,7 @@ const CustomDivider = styled(Divider)({
 });
 
 // const CustomItemText = styled(Divider)({
-  
+
 // });
 
 // const StyledIcon = styled(Box)(({ }) => ({
@@ -82,7 +82,7 @@ const Menu: React.FC = () => {
           <List>
             {['Трекер'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton >
                   <ListItemIcon>
                     {index === 0 &&
                       <SvgIcon>
@@ -127,7 +127,7 @@ const Menu: React.FC = () => {
                 <ListItemButton>
                   <ListItemIcon>
                     {index === 0 &&
-                      <SettingsOutlinedIcon sx={{ color: '#B5B5B7' }}/>
+                      <SettingsOutlinedIcon sx={{ color: '#B5B5B7' }} />
                     }
                     {index === 1 &&
                       <SvgIcon>

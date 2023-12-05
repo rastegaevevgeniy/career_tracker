@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Button, Card, CardContent, Typography, Box, SvgIcon } from '@mui/material';
 import './UserProfile.scss';
-import {PROFILE_ICON} from "../../utils/constants";
+import { PROFILE_ICON } from "../../utils/constants";
 
 // interface UserProfileProps {
 //   user: {
@@ -14,6 +14,17 @@ import {PROFILE_ICON} from "../../utils/constants";
 // }
 
 const UserProfile: React.FC = () => {
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Card className="user-profile" style={{ borderRadius: 8 }}>
       <CardContent>
@@ -31,7 +42,7 @@ const UserProfile: React.FC = () => {
         <Typography variant="body2" component="p">
           Middle аналитик
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleButtonClick}>
           Смотреть навыки &rarr;
         </Button>
       </CardContent>
