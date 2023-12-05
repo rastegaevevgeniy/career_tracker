@@ -14,6 +14,7 @@ function Main() {
     <main className="main">
       {startPage && <StartPage />}
       {/* {trackerPage && <TrackerBlock />} */}
+
     </main>
   );
 }

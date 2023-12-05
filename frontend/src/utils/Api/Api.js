@@ -12,9 +12,9 @@ class Api {
     }
 
     getInitialTracker() {
-        return fetch(this._url + "/api/tracker/", {
+        return fetch("http://127.0.0.1:8000/api/tracker/", {
             method: "GET",
-            headers: this._headers
+            headers: { "content-type": "application/json" },
         }).then((res) => this._checkResponse(res))
     }
 
@@ -26,10 +26,11 @@ class Api {
     }
 }
 
+
 export const api = new Api({
-    url: "http://localhost:3000",
+    url: "http://127.0.0.1:8000",
     headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        // authorization: `Bearer ${localStorage.getItem("token")}`,
         "content-type": "application/json"
     }
 })
