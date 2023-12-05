@@ -3,6 +3,8 @@ provides analytical data in the career track
 Вывод аналитических данных для карьерного трека
 
 
+kdjbn'sdfmkhnd;bns;dgnb
+=======
 pip install -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
