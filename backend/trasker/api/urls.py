@@ -1,10 +1,12 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-#from api.views import Name
+from api.views import  TrackerViewSet
+
+
 
 router = DefaultRouter()
-#router.register('name', Name, basename='name')
+router.register('tracker', TrackerViewSet, basename='trackers')
 
 
 urlpatterns = [
