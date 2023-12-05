@@ -4,12 +4,13 @@ from csv import DictReader
 from django.conf import settings
 from django.core.management import BaseCommand
 
-from professions.models import (Course, CourseSkill, CourseUser, Lesson,
-                                LessonUser, Profession, ProfessionCourse,
-                                ProfessionSkill, ProfessionUser,
-                                RecruitmentCompany, Skill, DirectionTraining,
+from professions.models import (Course, CourseSkill, Lesson,
+                                 Profession, ProfessionCourse,
+                                ProfessionSkill, RecruitmentCompany,
+                                Skill, DirectionTraining,
                                 Vacancy, VacancySkill)
-from users.models import User
+from users.models import CourseUser,  LessonUser, ProfessionUser, User
+
 
 RESULT_LOAD = 'загрузка завершена: '
 ERROR_LOAD = 'запись уже существует, не создана: '

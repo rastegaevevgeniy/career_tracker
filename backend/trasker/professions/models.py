@@ -2,8 +2,6 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from users.models import User
-
 
 class BaseName(models.Model):
     """Абстрактный класс модели с именем."""
@@ -21,18 +19,6 @@ class BaseName(models.Model):
         return self.name
 
 
-class BaseUser(models.Model):
-    """Абстрактная модель пользователя."""
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        verbose_name='Пользователь',
-    )
-
-    class Meta:
-        abstract = True
-
-
 class Skill(BaseName):
     """Модель навыков."""
 
@@ -44,8 +30,8 @@ class Skill(BaseName):
 class DirectionTraining(BaseName):
     """Модель  направления обучения."""
     class Meta:
-        verbose_name = 'Программа'
-        verbose_name_plural = 'Программы'
+        verbose_name = 'Направление обучения'
+        verbose_name_plural = 'Направления обучения'
 
 
 class Course(BaseName):
@@ -61,7 +47,7 @@ class Course(BaseName):
     direction_training = models.ForeignKey(
         DirectionTraining,
         on_delete=models.CASCADE,
-        verbose_name='Профессия',
+        verbose_name='Направление обучения',
     )
     course_cost_full = models.PositiveSmallIntegerField(
         verbose_name='Полная стоимость обучения',
@@ -96,6 +82,8 @@ class CourseSkill(models.Model):
 
     class Meta:
         default_related_name = 'courses_skills'
+        verbose_name = 'Курс-Навык'
+        verbose_name_plural = 'Курсы-Навыки'
         constraints = ([models.UniqueConstraint(
             fields=['course', 'skill'],
             name='course_skill')])
@@ -166,6 +154,8 @@ class ProfessionSkill(models.Model):
 
     class Meta:
         default_related_name = 'professions_skills'
+        verbose_name = 'Профессия-Навык'
+        verbose_name_plural = 'Профессии-Навыки'
         constraints = ([models.UniqueConstraint(
             fields=['profession', 'skill'],
             name='profession_skill')])
@@ -183,6 +173,8 @@ class ProfessionCourse(models.Model):
 
     class Meta:
         default_related_name = 'professions_courses'
+        verbose_name = 'Профессия-Курс'
+        verbose_name_plural = 'Профессии-Курсы'
         constraints = ([models.UniqueConstraint(
             fields=['profession', 'course'],
             name='profession_course')])
@@ -253,62 +245,8 @@ class VacancySkill(models.Model):
 
     class Meta:
         default_related_name = 'vacancy_skills'
+        verbose_name = 'Вакансия-Навык'
+        verbose_name_plural = 'Вакансии-Навыки'
         constraints = ([models.UniqueConstraint(
             fields=['vacancy', 'skill'],
             name='vacancy_skill')])
-
-
-class CourseUser(BaseUser):
-    """Модель курсов пользователя."""
-    course = models.ForeignKey(
-        Course,
-        on_delete=models.CASCADE,
-        verbose_name='Курсы',
-    )
-    date = models.DateTimeField(
-        'Дата подписки на курс',
-    )
-
-    class Meta:
-        verbose_name = 'Курс пользователя'
-        verbose_name_plural = 'Курсы пользователя'
-        default_related_name = 'course_users'
-        constraints = ([models.UniqueConstraint(
-            fields=['user', 'course'],
-            name='user_course')])
-
-
-class LessonUser(BaseUser):
-    """Модель лекций пользователя."""
-    lesson = models.ForeignKey(
-        Lesson,
-        on_delete=models.CASCADE,
-        verbose_name='Пользователь',
-    )
-    date = models.DateTimeField(
-        'Дата завершения лекции',
-    )
-
-    class Meta:
-        verbose_name = 'Лекция пользователя'
-        verbose_name_plural = 'Лекции пользователя'
-        default_related_name = 'leksion_users'
-        constraints = ([models.UniqueConstraint(
-            fields=['user', 'lesson'],
-            name='user_lession')])
-
-
-class ProfessionUser(BaseUser):
-    profession = models.ForeignKey(
-        Profession,
-        on_delete=models.CASCADE,
-        verbose_name='Пользователь',
-    )
-
-    class Meta:
-        verbose_name = 'Профессия пользователя'
-        verbose_name_plural = 'профессии пользователя'
-        default_related_name = 'profession_users'
-        constraints = ([models.UniqueConstraint(
-            fields=['user', 'profession'],
-            name='user_profession')])
