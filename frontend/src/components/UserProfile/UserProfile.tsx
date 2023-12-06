@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import { Button, Card, CardContent, Typography, Box, SvgIcon } from '@mui/material';
 import './UserProfile.scss';
 import { PROFILE_ICON } from "../../utils/constants";
-
-// interface UserProfileProps {
-//   user: {
-//     name: string;
-//     email: string;
-//     bio: string;
-//   };
-//   onViewSkillsClick: () => void;
-// }
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../actions';
 
 const UserProfile: React.FC = () => {
+
+  const dispatch = useDispatch();
 
   return (
     <Card className="user-profile" style={{ borderRadius: 8 }}>
@@ -32,7 +27,7 @@ const UserProfile: React.FC = () => {
         <Typography variant="body2" component="p">
           Middle аналитик
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={() => dispatch(openModal())}>
           Смотреть навыки &rarr;
         </Button>
       </CardContent>
@@ -40,14 +35,6 @@ const UserProfile: React.FC = () => {
   );
 };
 
-// UserProfile.propTypes = {
-//   user: PropTypes.shape({
-//     name: PropTypes.string.isRequired,
-//     email: PropTypes.string.isRequired,
-//     bio: PropTypes.string,
-//   }).isRequired,
-//   onViewSkillsClick: PropTypes.func.isRequired,
-// };
 
 export default UserProfile;
 

@@ -2,17 +2,26 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import "./ModalSkill.scss"
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { api } from '../../utils/Api/Api';
 import { CLOSE_ICON } from '../../utils/constants';
 import { SvgIcon } from '@mui/material';
-import { YourDataType } from '../../utils/Api/ApiConst'
+import { YourDataType } from '../../utils/Api/ApiConst';
+import { closeModal } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const ModalSkill: React.FC = () => {
     const [test, setTest] = useState<YourDataType[] | null>(null);
-    const [isModalOpen, setModalOpen] = useState(true);
+
+    interface RootState {
+        isModalOpen: boolean;
+    }
+
+    const dispatch = useDispatch();
+    const isModalOpen = useSelector((state: RootState) => state.isModalOpen);
 
     useEffect(() => {
         api
@@ -28,10 +37,7 @@ const ModalSkill: React.FC = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: "924px",
-        // maxHeight: "1428px",
         bgcolor: '#F1F3F7',
-        // border: '2px solid #000',
-        // boxShadow: 24,
         padding: "34px",
     };
     const style2 = {
@@ -39,69 +45,63 @@ const ModalSkill: React.FC = () => {
         borderRadius: '10px',
     }
 
-    const handleButtonClick = () => {
-        setModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setModalOpen(false);
-    };
     return (
         <div>
-            <Modal
-                open={isModalOpen}
-                // onClose={handleCloseModal}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <div className='title'>
-                        <h1 className='title__text'>Навыки</h1>
-                        <button className='title__button' onClick={handleCloseModal}>
-                            <SvgIcon>
-                                {CLOSE_ICON}
-                            </SvgIcon>
-                        </button>
-                    </div>
-                    <Box sx={style2}>
+            {isModalOpen !== undefined &&
+                <Modal
+                    open={isModalOpen}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <div className='title'>
+                            <h1 className='title__text'>Навыки</h1>
+                            <button className='title__button' onClick={() => dispatch(closeModal())}>
+                                <SvgIcon>
+                                    {CLOSE_ICON}
+                                </SvgIcon>
+                            </button>
+                        </div>
+                        <Box sx={style2}>
 
-                        <Typography >
-                            Text in a modal
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            <div>
-                                {test && test.map((item, index) => (
-                                    <div key={index}>
-                                        <h1>{item.username}</h1>
-                                        {item.profession.map((profession, profIndex) => (
-                                            <div key={profIndex}>
-                                                <h2>{profession.name}</h2>
-                                                <p>Level: {profession.level}</p>
-                                                <p>Salary: {profession.salary}</p>
-                                                <ul>
-                                                    {profession.skills.map((skill, skillIndex) => (
-                                                        <li key={skillIndex}>{skill}</li>
+                            <Typography >
+                                Text in a modal
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                <div>
+                                    {test && test.map((item, index) => (
+                                        <div key={index}>
+                                            <h1>{item.username}</h1>
+                                            {item.profession.map((profession, profIndex) => (
+                                                <div key={profIndex}>
+                                                    <h2>{profession.name}</h2>
+                                                    <p>Level: {profession.level}</p>
+                                                    <p>Salary: {profession.salary}</p>
+                                                    <ul>
+                                                        {profession.skills.map((skill, skillIndex) => (
+                                                            <li key={skillIndex}>{skill}</li>
+                                                        ))}
+                                                    </ul>
+                                                    <h3>Courses:</h3>
+                                                    {profession.course.map((course, courseIndex) => (
+                                                        <div key={courseIndex}>
+                                                            <h4>{course.name}</h4>
+                                                            <p>Description: {course.description}</p>
+                                                            <p>Full Cost: {course.course_cost_full}</p>
+                                                            <p>Per Month: {course.course_per_month}</p>
+                                                            <a href={course.link_course} target="_blank" rel="noopener noreferrer">Link</a>
+                                                        </div>
                                                     ))}
-                                                </ul>
-                                                <h3>Courses:</h3>
-                                                {profession.course.map((course, courseIndex) => (
-                                                    <div key={courseIndex}>
-                                                        <h4>{course.name}</h4>
-                                                        <p>Description: {course.description}</p>
-                                                        <p>Full Cost: {course.course_cost_full}</p>
-                                                        <p>Per Month: {course.course_per_month}</p>
-                                                        <a href={course.link_course} target="_blank" rel="noopener noreferrer">Link</a>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        ))}
-                                    </div>
-                                ))}
-                            </div>
-                        </Typography>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </div>
+                            </Typography>
+                        </Box>
                     </Box>
-                </Box>
-            </Modal>
+                </Modal>
+            }
             {/* <Modal
                 open={isModalOpen}
                 onClose={handleCloseModal}
