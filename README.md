@@ -20,10 +20,15 @@ python3 manage.py runserver
 ```
 cd backend/trasker
 ```
+```
 docker build -t tracker_backend . 
+```
 ```
 docker run --name tracker_backend_container --rm -p 8000:8000 tracker_backend
 ```
+```
 docker exec tracker_backend_container python manage.py migrate
 ```
+```
 docker exec tracker_backend_container python manage.py load_data
+```
