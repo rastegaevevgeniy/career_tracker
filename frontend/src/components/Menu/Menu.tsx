@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./Menu.scss";
+import { Link } from 'react-router-dom';
 import UserProfile from '../UserProfile/UserProfile';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -26,20 +27,6 @@ const CustomDivider = styled(Divider)({
   width: '90%',
   margin: '0 auto',
 });
-
-// const CustomItemText = styled(Divider)({
-
-// });
-
-// const StyledIcon = styled(Box)(({ }) => ({
-//   width: '24px',
-//   height: '24px',
-//   backgroundImage: `url(${icon})`,
-//   backgroundSize: 'cover',
-//   // marginRight: theme.spacing(1),
-//   color: '#B5B5B7',
-// }));
-
 
 const Menu: React.FC = () => {
 
@@ -82,7 +69,7 @@ const Menu: React.FC = () => {
           <List>
             {['Трекер'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton >
+                <ListItemButton component={Link} to="/recommendations">
                   <ListItemIcon>
                     {index === 0 &&
                       <SvgIcon>
@@ -124,7 +111,7 @@ const Menu: React.FC = () => {
           <List>
             {['Инфо профиля', 'Выход'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton component={index === 1 ? Link : 'div'} to={index === 1 ? 'https://practicum.yandex.ru/profile' : undefined}>
                   <ListItemIcon>
                     {index === 0 &&
                       <SettingsOutlinedIcon sx={{ color: '#B5B5B7' }} />
