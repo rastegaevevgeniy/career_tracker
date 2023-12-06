@@ -15,16 +15,6 @@ import { PROFILE_ICON } from "../../utils/constants";
 
 const UserProfile: React.FC = () => {
 
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const handleButtonClick = () => {
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
   return (
     <Card className="user-profile" style={{ borderRadius: 8 }}>
       <CardContent>
@@ -42,7 +32,7 @@ const UserProfile: React.FC = () => {
         <Typography variant="body2" component="p">
           Middle аналитик
         </Typography>
-        <Button variant="contained" color="primary" onClick={handleButtonClick}>
+        <Button variant="contained" color="primary">
           Смотреть навыки &rarr;
         </Button>
       </CardContent>
