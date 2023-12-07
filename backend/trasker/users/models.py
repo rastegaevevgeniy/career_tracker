@@ -46,10 +46,7 @@ class User(AbstractUser):
         Lesson, through='LessonUser',
         verbose_name='Лекции',
     )
-    vacancy = models.ManyToManyField(
-        Vacancy,
-        verbose_name='Вакансии',
-    )
+
 
     class Meta:
         ordering = ('username', )
@@ -79,7 +76,7 @@ class CourseUser(BaseUser):
         on_delete=models.CASCADE,
         verbose_name='Курсы',
     )
-    date = models.DateTimeField(
+    date = models.DateField(
         'Дата подписки на курс',
     )
 
@@ -99,7 +96,7 @@ class LessonUser(BaseUser):
         on_delete=models.CASCADE,
         verbose_name='Пользователь',
     )
-    date = models.DateTimeField(
+    date = models.DateField(
         'Дата завершения лекции',
     )
 

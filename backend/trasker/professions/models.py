@@ -211,7 +211,7 @@ class Vacancy(BaseName):
         max_length=settings.LENGTH16,
         verbose_name='Единица измерения'
     )
-    date = models.DateTimeField(
+    date = models.DateField(
         'Дата',
     )
     profession = models.ForeignKey(
@@ -229,6 +229,8 @@ class Vacancy(BaseName):
     )
 
     class Meta:
+        ordering = ['-date']
+        default_related_name = 'vacancies'
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
 

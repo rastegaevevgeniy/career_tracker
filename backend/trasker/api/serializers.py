@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import serializers
 
 
@@ -20,14 +21,30 @@ class CourseSerializer(serializers.ModelSerializer):
                    'course_per_month', 'link_course', 'direction_training') 
 
 
+class VacancySerializer(serializers.ModelSerializer):
+    skills = serializers.StringRelatedField(many=True, read_only=True)
+  #  date = serializers.DateField
+    recruter_name = serializers.ReadOnlyField(source='recruter.name')
+    recruter_icon = serializers.ReadOnlyField(source='recruter.link_ikon')
+
+    class Meta:
+        fields = ('name', 'recruter_name', 'recruter_icon', 'salary',
+                  'salary_measurement', 'date', 'skills', 'link_vacancy')
+        model = Vacancy
+
+
 class ProfessionSerializer(serializers.ModelSerializer):
     skills = serializers.StringRelatedField(many=True, read_only=True)
     course = CourseSerializer(many=True, read_only=True)
+    vacancies = serializers.SerializerMethodField()#VacancySerializer(many=True, read_only=True)
 
     class Meta:
-        fields = ('name', 'level', 'salary', 'skills', 'course')
+        fields = ('name', 'level', 'salary', 'skills', 'course', 'vacancies')
         model = Profession
 
+    def get_vacancies(self, obj):
+        stores = obj.vacancies.all()[:settings.NUMBER_VACANCIES]
+        return VacancySerializer(stores, many=True).data
 
 #class LessonSerializer(serializers.ModelSerializer):
 #
@@ -35,23 +52,16 @@ class ProfessionSerializer(serializers.ModelSerializer):
 #        fields = ('name', 'duration_training', 'course')
 #        model = Lesson
 
-class VacancySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        fields = ('name')
-        model = Vacancy
 
 
 class TrackerSerializer(serializers.ModelSerializer):
     profession = ProfessionSerializer(many=True, read_only=True)
     course = CourseSerializer(many=True, read_only=True)
-    vacancy = VacancySerializer(many=True, read_only=True)
-  #  vacancy = VacancySerializer(source='get_vacancy', many=True)
- #   lesson = LessonSerializer(many=True, read_only=True)
+  #  vacancy = VacancySerializer(many=True, read_only=True)
 
     class Meta:
         fields = ('username', 'first_name', 'last_name', 'profession',
-                  'course', 'vacancy')
+                  'course')
         model = User
 
  #   def get_vacancy(self, obj):
