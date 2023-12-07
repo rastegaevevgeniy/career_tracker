@@ -7,14 +7,14 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { api } from '../../utils/Api/Api';
 import { CLOSE_ICON } from '../../utils/constants';
-import { SvgIcon } from '@mui/material';
+import { LinearProgress, SvgIcon } from '@mui/material';
 import { YourDataType } from '../../utils/Api/ApiConst';
 import { closeModal } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 const ModalSkill: React.FC = () => {
-    const [test, setTest] = useState<YourDataType[] | null>(null);
+    const [dataUser, setDataUser] = useState<YourDataType[] | null>(null);
 
     interface RootState {
         isModalOpen: boolean;
@@ -26,24 +26,34 @@ const ModalSkill: React.FC = () => {
     useEffect(() => {
         api
             .getInitialTracker()
-            .then((data) => setTest(data))
+            .then((data) => setDataUser(data))
             .catch((err) => console.log(`Ошибка ${err}`))
 
     }, [])
 
     const style = {
         position: 'fixed',
-        top: "800px",
+        top: "138px",
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: "924px",
+        width: "936px",
         bgcolor: '#F1F3F7',
-        padding: "34px",
+        padding: "36px 40px",
     };
     const style2 = {
         bgcolor: '#FFF',
         borderRadius: '10px',
+        padding: '14px',
     }
+
+    // const style3 = {
+    //     // fontFamily: 'YS Text',
+    //     fontSize: '14px',
+    //     fontStyle: 'normal',
+    //     fontWeight: 400,
+    //     lineHeight: '20px',
+    //     color: '#797981',
+    // }
 
     return (
         <div>
@@ -63,13 +73,34 @@ const ModalSkill: React.FC = () => {
                             </button>
                         </div>
                         <Box sx={style2}>
-
-                            <Typography >
-                                Text in a modal
-                            </Typography>
+                            <div className='block1'>
+                                <div className='block1__title'>
+                                    <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
+                                        Твоя цель
+                                    </Typography>
+                                    <Typography id="modal-modal-description" sx={{
+                                        fontFamily: 'Yandex Sans Text, Arial, sans-serif',
+                                        fontSize: '23px',
+                                        fontStyle: 'normal',
+                                        fontWeight: 500,
+                                        lineHeight: '24px',
+                                        paddingTop: "8px",
+                                    }} variant="h6" gutterBottom>
+                                        Middle
+                                    </Typography>
+                                </div>
+                                <Box sx={{ width: '572px', display: "grid", alignContent: 'center' }}>
+                                    <LinearProgress variant="determinate" value={60} // Сюда закинуть процент расчитанный от показателей бэка
+                                        sx={{
+                                            height: "12px", borderRadius: '12px',
+                                            '& .css-5xe99f-MuiLinearProgress-bar1': { backgroundColor: '#87CC9E', borderRadius: '12px' },
+                                            backgroundColor: '#5A9BFF',
+                                        }} />
+                                </Box>
+                            </div>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 <div>
-                                    {test && test.map((item, index) => (
+                                    {dataUser && dataUser.map((item, index) => (
                                         <div key={index}>
                                             <h1>{item.username}</h1>
                                             {item.profession.map((profession, profIndex) => (
