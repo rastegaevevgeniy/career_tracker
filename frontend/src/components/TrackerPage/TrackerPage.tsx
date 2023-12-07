@@ -1,12 +1,16 @@
 import React from 'react';
 import "./TrackerPage.scss";
 import ProgressBlock from "../ProgressBlock/ProgressBlock";
+import CousesBlock from "../CoursesBlock/CoursesBlock";
+import ReccomendationsBlock from "../ReccomendationsBlock/ReccomendationsBlock";
 
 const TrackerPage: React.FC = () => {
   
   return (
-    <div className='trackerPage'>
+    <div className='tracker-page'>
       <ProgressBlock />
+      <CousesBlock />
+      <ReccomendationsBlock />
     </div>
   );
 }

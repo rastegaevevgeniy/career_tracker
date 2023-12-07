@@ -1,0 +1,49 @@
+.progress-card {
+  position: relative;
+  width: 388px;
+  height: 260px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #FFF;
+
+  .MuiTypography-h6 {
+    width: 62%;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.17;
+    font-family: 'Yandex Sans Display';
+  }
+
+  .progress-card__progress-container {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .MuiTypography-caption {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      font-family: 'Yandex Sans Display';
+    }
+  }
+
+  .progress-card__lessons-learned {
+    color: #5A9BFF;
+  }
+
+  .MuiTypography-body2 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.2;
+    font-family: 'Yandex Sans Display';
+    position: absolute;
+    bottom: 16px;
+  }
+}
+

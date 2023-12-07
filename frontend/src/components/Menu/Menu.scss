@@ -4,7 +4,7 @@
   position: absolute;
   bottom: 0;
   top: 63px;
-  height: calc(100vh - 62px);
+  // height: calc(100vh - 62px);
   color: #B5B5B7;
 
   .menu__container-top {
@@ -15,12 +15,6 @@
     position: absolute;
     bottom: 40px;
   }
-
-  // .menu__nav {
-  //   display: flex;
-
-  //   gap: 10px;
-  // }
 
   .MuiTypography-root {
     font-family: "Yandex Sans Text", "Arial", sans-serif;
