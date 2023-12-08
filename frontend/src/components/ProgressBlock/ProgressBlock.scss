@@ -1,0 +1,95 @@
+.progress-block {
+  // width: 1204px;
+  width: 97%;
+  min-height: 280px;
+  min-width: 900px;
+  display: flex;
+  margin: 32px 40px 32px 0;
+  padding: 40px 5% 40px 5%;
+  align-items: center;
+  border-radius: 10px;
+  background: #FFF;
+  font-style: normal;
+  font-weight: 500;
+
+  .progress-block__text {
+    font-size: 14px;
+    line-height: 1.42; 
+    font-family: 'Yandex Sans Text';
+  }
+
+  .progress-block__progress-container {
+    // background-color: lightcoral;
+    // margin-right: 56px;
+    margin-right: 4.6%;
+    max-height: 176px;
+    min-width: 170px;
+
+    .progress-block__progress {
+      font-size: 72px;
+      line-height: 1;
+      padding-bottom: 8px;
+      font-family: 'Yandex Sans Display';
+      font-weight: 500;
+    }
+    
+    .progress-block__button {
+      border-radius: 6px;
+      box-shadow: none;
+      background-color: #5A9BFF;
+      text-transform: none;
+      font-weight: 400;
+      margin-top: 36px;
+    }
+  }
+
+  .progress-block__image {
+    background-image: url('../../images/progress.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    min-width: 140px;
+  }
+
+  .progress-block__info {
+    display: flex;
+    flex-direction: row;
+    // margin-left: 228px;
+    margin-left: 19%;
+    width: 36%;
+
+    .progress-block__info-container {
+      min-height: 200px;
+      border-left: 1px solid #B5B5B7;
+      padding-left: 24px;
+      // background-color: lightgreen;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 36px;
+      min-width: 170px;
+    }
+
+    .progress-block__info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .progress-block__number {
+      font-size: 34px;
+      line-height: 1.17;
+      display: block;
+      font-family: 'Yandex Sans Display';
+      font-weight: 500;
+    }
+
+    .progress-block__lessons {
+      width: 47%;
+      padding-right: 60px;
+      min-width: 170px;
+    }
+  }
+}

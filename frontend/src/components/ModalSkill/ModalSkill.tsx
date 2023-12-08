@@ -30,6 +30,11 @@ const ModalSkill: React.FC = () => {
     }, [])
 
     const style = {
+        // position: 'absolute' as 'absolute',
+        // top: "70px",
+        // top: "0",
+        right: '0',
+        // left: '65%',
         position: 'absolute',
         top: '54%',
         left: '59%',
