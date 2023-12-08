@@ -1,8 +1,6 @@
-// import { Modal } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import "./ModalSkill.scss"
-// import Button from '@mui/material/Button';
+import "./ModalSkill.scss";
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { api } from '../../utils/Api/Api';
@@ -11,6 +9,7 @@ import { LinearProgress, SvgIcon } from '@mui/material';
 import { YourDataType } from '../../utils/Api/ApiConst';
 import { closeModal } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Skills from '../Skills/Skills';
 
 
 const ModalSkill: React.FC = () => {
@@ -28,13 +27,12 @@ const ModalSkill: React.FC = () => {
             .getInitialTracker()
             .then((data) => setDataUser(data))
             .catch((err) => console.log(`Ошибка ${err}`))
-
     }, [])
 
     const style = {
-        position: 'fixed',
-        top: "138px",
-        left: '50%',
+        position: 'absolute',
+        top: '54%',
+        left: '59%',
         transform: 'translate(-50%, -50%)',
         width: "936px",
         bgcolor: '#F1F3F7',
@@ -46,17 +44,8 @@ const ModalSkill: React.FC = () => {
         padding: '14px',
     }
 
-    // const style3 = {
-    //     // fontFamily: 'YS Text',
-    //     fontSize: '14px',
-    //     fontStyle: 'normal',
-    //     fontWeight: 400,
-    //     lineHeight: '20px',
-    //     color: '#797981',
-    // }
-
     return (
-        <div>
+        <div className='x'>
             {isModalOpen !== undefined &&
                 <Modal
                     open={isModalOpen}
@@ -73,8 +62,8 @@ const ModalSkill: React.FC = () => {
                             </button>
                         </div>
                         <Box sx={style2}>
-                            <div className='block1'>
-                                <div className='block1__title'>
+                            <div className='block'>
+                                <div className='block__title'>
                                     <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
                                         Твоя цель
                                     </Typography>
@@ -98,7 +87,19 @@ const ModalSkill: React.FC = () => {
                                         }} />
                                 </Box>
                             </div>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            <Skills />
+                            <div className='block'>
+                                <Typography variant="caption" display="block"
+                                    sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
+                                    Осталось учиться
+                                </Typography>
+                                <Typography variant="caption" display="block"
+                                    sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
+                                    3 месяца из 12
+                                </Typography>
+                            </div>
+
+                            {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 <div>
                                     {dataUser && dataUser.map((item, index) => (
                                         <div key={index}>
@@ -128,7 +129,7 @@ const ModalSkill: React.FC = () => {
                                         </div>
                                     ))}
                                 </div>
-                            </Typography>
+                            </Typography> */}
                         </Box>
                     </Box>
                 </Modal>

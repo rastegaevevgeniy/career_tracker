@@ -22,11 +22,24 @@
 
 }
 
-.block1 {
+.block {
     display: flex;
     flex-direction: row;
 
-    .block1__title {
+    .block__title {
         width: 254px;
     }
+}
+
+.x {
+    position: 'fixed';
+    top: "138px";
+    left: '50%';
+}
+
+.block__skill {
+    display: flex;
+    flex-direction: row;
+    padding: 24px 0;
+    border-bottom: 1px solid #F3F3F3;
 }
