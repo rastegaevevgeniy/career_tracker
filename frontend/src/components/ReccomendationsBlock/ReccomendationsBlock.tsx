@@ -1,44 +1,52 @@
 import React from 'react';
 import "./ReccomendationsBlock.scss";
 import Block from "../Block/Block";
-import CourseCard from "../CourseCard/CourseCard";
+import ReccomendCard from "../ReccomendCard/ReccomendCard";
 import {ListItem} from '@mui/material';
 
 const ReccomendationsBlock: React.FC = () => {
   
-  const courses = [
+  const recommendations = [
     {
       id: 1,
-      title: 'Продакт-менеджер с опытом',
-      lessonLearned: 51,
-      totalLessons: 85,
-      progressValue: 60,
+      name: 'Менеджмент',
+      duration: '2 месяца',
+      level: 'с нуля',
+      title: 'Навыки критического мышления',
+      description: 'Для принятия верных решений в периоды высокой турбулентности ',
+      vacancies: '+ 1250 вакансий',
     },
     {
       id: 2,
-      title: 'Бизнес-аналитик',
-      lessonLearned: 85,
-      totalLessons: 85,
-      progressValue: 100,
+      name: 'Дизайн',
+      duration: '6 месяцев',
+      level: 'с нуля',
+      title: 'Продуктовый дизайнер',
+      description: 'Для эффективной проработки дизайна вашего продукта',
+      vacancies: '+ 450 вакансий',
     },
     {
       id: 3,
-      title: 'Figma - подготовка к верстке',
-      lessonLearned: 102,
-      totalLessons: 102,
-      progressValue: 100,
+      name: 'Анализ данных',
+      duration: '6 месяцев',
+      level: 'с нуля',
+      title: 'SQL для работы с данными и аналитики',
+      description: 'Курсы помогут быстро анализировать данные и принимать верные решения',
+      vacancies: '+ 730 вакансий',
     }
   ]
 
   return (
     <Block title={'Рекомендации для вас'}>
-      {courses.map((course) => (
-          <ListItem key={course.id}>
-            <CourseCard 
-              title={course.title}
-              progressValue={course.progressValue}
-              lessonLearned={course.lessonLearned}
-              totalLessons={course.totalLessons}
+      {recommendations.map((recommendation) => (
+          <ListItem key={recommendation.id}>
+            <ReccomendCard 
+              name={recommendation.name}
+              duration={recommendation.duration}
+              level={recommendation.level}
+              title={recommendation.title}
+              description={recommendation.description}
+              vacancies={recommendation.vacancies}
             />
           </ListItem>
         ))
