@@ -1,12 +1,13 @@
 .menu {
   width: 156px;
   background: #1A1B22;
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  top: 63px;
-  height: calc(100% - 62px);
-  // height: 100%;
+  top: 0;
+  // height: calc(100% - 62px);
+  height: 100%;
   color: #B5B5B7;
+  padding-top: 64px;
 
   .menu__container-top {
     margin-top: 36px;
