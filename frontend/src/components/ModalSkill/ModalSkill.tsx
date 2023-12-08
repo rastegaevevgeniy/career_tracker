@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
 import "./ModalSkill.scss";
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import { api } from '../../utils/Api/Api';
 import { CLOSE_ICON } from '../../utils/constants';
-import { LinearProgress, SvgIcon } from '@mui/material';
 import { YourDataType } from '../../utils/Api/ApiConst';
 import { closeModal } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Skills from '../Skills/Skills';
+import {
+    Typography, 
+    Modal, 
+    LinearProgress, 
+    SvgIcon, 
+    Box,
+} from '@mui/material';
 
 
 const ModalSkill: React.FC = () => {
@@ -29,15 +32,27 @@ const ModalSkill: React.FC = () => {
             .catch((err) => console.log(`Ошибка ${err}`))
     }, [])
 
+    // const [isVisible, setIsVisible] = useState(false);
+
+    // useEffect(() => {
+    //     if (isModalOpen !== undefined) {
+    //     setIsVisible(isModalOpen);
+    //     }
+    // }, [isModalOpen]);
+
     const style = {
-        right: '0',
+        // right: isVisible ? '0' : '-100%',
+        // transition: 'right 0.4s linear',
+        // transform: `translateX(${isVisible ? '0' : '100%'})`,
+        // transition: 'transform 1s linear',
         height: '100%',
+        right: '0',
         position: 'absolute',
-        // transform: 'translate(-50%, -50%)',
         width: "936px",
         bgcolor: '#F1F3F7',
         padding: "36px 40px",
     };
+
     const style2 = {
         bgcolor: '#FFF',
         borderRadius: '10px',
@@ -49,6 +64,7 @@ const ModalSkill: React.FC = () => {
             {isModalOpen !== undefined &&
                 <Modal
                     open={isModalOpen}
+                    // open={isVisible}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
