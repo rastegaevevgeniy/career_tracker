@@ -30,15 +30,10 @@ const ModalSkill: React.FC = () => {
     }, [])
 
     const style = {
-        // position: 'absolute' as 'absolute',
-        // top: "70px",
-        // top: "0",
         right: '0',
-        // left: '65%',
+        height: '100%',
         position: 'absolute',
-        top: '54%',
-        left: '59%',
-        transform: 'translate(-50%, -50%)',
+        // transform: 'translate(-50%, -50%)',
         width: "936px",
         bgcolor: '#F1F3F7',
         padding: "36px 40px",
@@ -67,6 +62,7 @@ const ModalSkill: React.FC = () => {
                             </button>
                         </div>
                         <Box sx={style2}>
+                        {/* <Box sx={{style2, overflowY: 'auto'}}> */}
                             <div className='block'>
                                 <div className='block__title'>
                                     <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
