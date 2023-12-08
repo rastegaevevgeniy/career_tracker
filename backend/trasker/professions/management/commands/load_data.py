@@ -73,6 +73,7 @@ def loading_course():
                    direction_training=(DirectionTraining.objects.
                                        get(id=int(row['direction_training']))),
                    description=row['description'],
+                   course_duration=float(row['course_duration']),
                    course_cost_full=int(row['course_cost_full']),
                    course_per_month=int(row['course_per_month']),
                    link_course=row['link_course']).save()

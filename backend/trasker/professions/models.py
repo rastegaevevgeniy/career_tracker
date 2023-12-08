@@ -40,6 +40,10 @@ class Course(BaseName):
         max_length=settings.LENGTH254,
         verbose_name='Описание'
     )
+    course_duration = models.FloatField(
+        verbose_name='Длительность курса',
+        validators=[MinValueValidator(0)]
+    )
     skill = models.ManyToManyField(
         Skill, through='CourseSkill',
         verbose_name='Навыки',
