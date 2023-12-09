@@ -3,6 +3,7 @@ import "./TrackerPage.scss";
 import ProgressBlock from "../ProgressBlock/ProgressBlock";
 import CousesBlock from "../CoursesBlock/CoursesBlock";
 import ReccomendationsBlock from "../ReccomendationsBlock/ReccomendationsBlock";
+import AchiveBlock from "../AchiveBlock/AchiveBlock";
 
 const TrackerPage: React.FC = () => {
   
@@ -11,6 +12,7 @@ const TrackerPage: React.FC = () => {
       <ProgressBlock />
       <CousesBlock />
       <ReccomendationsBlock />
+      <AchiveBlock />
     </div>
   );
 }
