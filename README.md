@@ -73,11 +73,14 @@ docker-compose up
 docker compose exec backend python manage.py migrate
 ```
 ```
-docker exec tracker_backend_container python manage.py load_data
+docker compose exec backend python manage.py load_data
 ```
 ```
 docker compose exec backend python manage.py collectstatic 
 ```
 ```
 docker compose exec backend cp -r /app/static/. /backend_static/static/
+```
+```
+http://localhost:8000/api/
 ```

@@ -6,7 +6,7 @@ volumes:
 
 services:
   db:
-    container_name: foodgram_db
+    container_name: tracker_db
     image: postgres:13.10
 
     volumes:
