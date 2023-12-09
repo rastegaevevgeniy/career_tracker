@@ -4,13 +4,11 @@ from csv import DictReader
 from django.conf import settings
 from django.core.management import BaseCommand
 
-from professions.models import (Course, Lesson, LessonSkill, #CourseSkill, 
-                                 Profession, ProfessionCourse,
-                                ProfessionSkill, RecruitmentCompany,
-                                Skill, DirectionTraining,
-                                Vacancy, VacancySkill)
-from users.models import CourseUser,  LessonUser, ProfessionUser, User
-
+from professions.models import (Course, DirectionTraining, Lesson, LessonSkill,
+                                Profession, ProfessionCourse, ProfessionSkill,
+                                RecruitmentCompany, Skill, Vacancy,
+                                VacancySkill)
+from users.models import CourseUser, LessonUser, ProfessionUser, User
 
 RESULT_LOAD = 'загрузка завершена: '
 ERROR_LOAD = 'запись уже существует, не создана: '
@@ -79,20 +77,6 @@ def loading_course():
                    course_per_month=int(row['course_per_month']),
                    link_course=row['link_course']).save()
     print_result(settings.FILE['course'])
-
-
-#def loading_course_skill():
-#    for row in DictReader(open(settings.FILE['course_skill'], 'r',
-#                               encoding='utf-8')):
-#        if CourseSkill.objects.filter(course__id=int(row['course']),
-#                                      skill__id=int(row['skill'])).exists():
-#            print_error(row['course'], row['skill'])
-#        else:
-#            CourseSkill(
-#                course=Course.objects.get(id=int(row['course'])),
-#                skill=Skill.objects.get(id=int(row['skill']))
-#            ).save()
-#    print_result(settings.FILE['course_skill'])
 
 
 def loading_lesson():
@@ -271,7 +255,6 @@ def loading_data():
     loading_direction_training()
     loading_skill()
     loading_course()
- #   loading_course_skill()
     loading_lesson()
     loading_lesson_skill()
     loading_profession()

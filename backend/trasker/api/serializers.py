@@ -1,16 +1,11 @@
+from datetime import date
+
 from django.conf import settings
 from rest_framework import serializers
-from datetime import date
-import decimal
 
-from professions.models import (Course, LessonSkill, Lesson, #CourseSkill
-                                 Profession, ProfessionCourse,
-                                ProfessionSkill, RecruitmentCompany,
-                                Skill, DirectionTraining,
-                                Vacancy, VacancySkill)
-from users.models import CourseUser,  LessonUser, ProfessionUser, User
+from professions.models import Course, Lesson, Profession, Skill, Vacancy
+from users.models import CourseUser, User
 
-current_date = date.today
 
 def get_course_skills(lessons_course):
     lesson_skills = {}
@@ -29,7 +24,8 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ('name', 'description', 'course_cost_full',
-                   'course_per_month', 'link_course',)
+                  'course_per_month', 'link_course',)
+
 
 class MyCourseSerializer(serializers.ModelSerializer):
     direction_training = serializers.StringRelatedField(many=False,
@@ -42,34 +38,37 @@ class MyCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ('name', 'description', 'course_cost_full',
-                   'course_per_month', 'link_course', 'direction_training',
-                   'course_duration','remaining_course',
-                   'number_lessons', 'lessons_completed', 'skills')
+                  'course_per_month', 'link_course', 'direction_training',
+                  'course_duration', 'remaining_course',
+                  'number_lessons', 'lessons_completed', 'skills')
 
-    
     def get_remaining_course(self, obj):
-        return ((obj.course_duration*10 -
-                round((date.today() - CourseUser.objects.
-                       get(user=self.context['user'][0],
-                           course=obj).date).days/3))/10)
+        return (obj.course_duration * 10 - round(
+            (date.today() - CourseUser.objects.
+                get(user=self.context['user'][0],
+                    course=obj).date).days / 3)) / 10
 
     def get_number_lessons(self, obj):
         return obj.lessons.count()
 
     def get_lessons_completed(self, obj):
-        return Lesson.objects.filter(leksion_users__user=self.context['user'][0], course=obj.id).count()
+        return Lesson.objects.filter(leksion_users__user=self.
+                                     context['user'][0], course=obj.id).count()
 
     def get_skills(self, obj):
-        lessons_course =  obj.lessons.all()
-        course_skills = get_course_skills(lessons_course)
-        lesson_user = Lesson.objects.filter(leksion_users__user=self.context['user'][0], course=obj.id).all()
-        user_skills = get_course_skills(lesson_user)
-        for skill in course_skills:
-            if user_skills.get(skill):
-                course_skills[skill] = round(user_skills[skill] / course_skills[skill] * 10) / 10
+        course_skills = get_course_skills(obj.lessons.all())
+        user_skills = get_course_skills(
+            Lesson.objects.filter(leksion_users__user=self.context['user'][0],
+                                  course=obj.id).all()
+        )
+        skills = {'mastered': [], 'not_mastered': []}
+        for item in course_skills:
+            if (user_skills.
+                    get(item) and user_skills[item] >= course_skills[item]):
+                skills['mastered'].append(item)
             else:
-                course_skills[skill] = 0
-        return course_skills
+                skills['not_mastered'].append(item)
+        return skills
 
 
 class VacancySerializer(serializers.ModelSerializer):
@@ -106,13 +105,15 @@ class ProfessionSerializer(serializers.ModelSerializer):
         return serializer.data
 
     def get_vacancies_count(self, obj):
-        return Vacancy.objects.filter(profession__users=self.context['user'][0]).count()
+        return Vacancy.objects.filter(profession__users=self.
+                                      context['user'][0]).count()
+
 
 class TrackerSerializer(serializers.ModelSerializer):
     profession = ProfessionSerializer(many=True, read_only=True)
     my_course = MyCourseSerializer(many=True, read_only=True, source='course')
-    
+
     class Meta:
         fields = ('username', 'first_name', 'last_name', 'profession',
-                   'my_course') 
+                  'my_course')
         model = User
