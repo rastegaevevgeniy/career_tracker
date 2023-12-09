@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from professions.models import (Course, CourseSkill, Lesson, Profession,
-                                ProfessionCourse, ProfessionSkill,
+from professions.models import (Course, Lesson, LessonSkill, Profession,
+                                ProfessionCourse, ProfessionSkill, #CourseSkill, 
                                 RecruitmentCompany, Skill,
                                 DirectionTraining, Vacancy, VacancySkill)
 
@@ -23,15 +23,20 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ('name',)
 
 
-class CourseSkillAdmin(admin.ModelAdmin):
-    list_display = ('course', 'skill')
-    list_filter = ('course',)
+#class CourseSkillAdmin(admin.ModelAdmin):
+#    list_display = ('course', 'skill')
+#    list_filter = ('course',)
 
 
 class LessonAdmin(admin.ModelAdmin):
     list_display = ('name', 'duration_training', 'course')
     search_fields = ('name',)
     list_filter = ('name',)
+
+
+class LessonSkillAdmin(admin.ModelAdmin):
+    list_display = ('lesson', 'skill')
+    list_filter = ('lesson',)
 
 
 class ProfessionAdmin(admin.ModelAdmin):
@@ -69,8 +74,9 @@ class VacancySkillAdmin(admin.ModelAdmin):
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(DirectionTraining, DirectionTrainingAdmin)
 admin.site.register(Course, CourseAdmin)
-admin.site.register(CourseSkill, CourseSkillAdmin)
+#admin.site.register(CourseSkill, CourseSkillAdmin)
 admin.site.register(Lesson, LessonAdmin)
+admin.site.register(LessonSkill, LessonSkillAdmin)
 admin.site.register(Profession, ProfessionAdmin)
 admin.site.register(ProfessionSkill, ProfessionSkillAdmin)
 admin.site.register(ProfessionCourse, ProfessionCourseAdmin)

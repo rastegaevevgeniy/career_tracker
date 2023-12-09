@@ -4,7 +4,7 @@ from csv import DictReader
 from django.conf import settings
 from django.core.management import BaseCommand
 
-from professions.models import (Course, CourseSkill, Lesson,
+from professions.models import (Course, Lesson, LessonSkill, #CourseSkill, 
                                  Profession, ProfessionCourse,
                                 ProfessionSkill, RecruitmentCompany,
                                 Skill, DirectionTraining,
@@ -66,6 +66,7 @@ def loading_skill():
 def loading_course():
     for row in DictReader(open(settings.FILE['course'], 'r',
                                encoding='utf-8')):
+        print(row)
         if Course.objects.filter(name=row['name']).exists():
             print_error(row['name'])
         else:
@@ -80,18 +81,18 @@ def loading_course():
     print_result(settings.FILE['course'])
 
 
-def loading_course_skill():
-    for row in DictReader(open(settings.FILE['course_skill'], 'r',
-                               encoding='utf-8')):
-        if CourseSkill.objects.filter(course__id=int(row['course']),
-                                      skill__id=int(row['skill'])).exists():
-            print_error(row['course'], row['skill'])
-        else:
-            CourseSkill(
-                course=Course.objects.get(id=int(row['course'])),
-                skill=Skill.objects.get(id=int(row['skill']))
-            ).save()
-    print_result(settings.FILE['course_skill'])
+#def loading_course_skill():
+#    for row in DictReader(open(settings.FILE['course_skill'], 'r',
+#                               encoding='utf-8')):
+#        if CourseSkill.objects.filter(course__id=int(row['course']),
+#                                      skill__id=int(row['skill'])).exists():
+#            print_error(row['course'], row['skill'])
+#        else:
+#            CourseSkill(
+#                course=Course.objects.get(id=int(row['course'])),
+#                skill=Skill.objects.get(id=int(row['skill']))
+#            ).save()
+#    print_result(settings.FILE['course_skill'])
 
 
 def loading_lesson():
@@ -107,6 +108,20 @@ def loading_lesson():
                 course=Course.objects.get(id=int(row['course'])),
             ).save()
     print_result(settings.FILE['lesson'])
+
+
+def loading_lesson_skill():
+    for row in DictReader(open(settings.FILE['lesson_skill'], 'r',
+                               encoding='utf-8')):
+        if LessonSkill.objects.filter(lesson__id=int(row['lesson']),
+                                      skill__id=int(row['skill'])).exists():
+            print_error(row['lesson'], row['skill'])
+        else:
+            LessonSkill(
+                lesson=Lesson.objects.get(id=int(row['lesson'])),
+                skill=Skill.objects.get(id=int(row['skill']))
+            ).save()
+    print_result(settings.FILE['lesson_skill'])
 
 
 def loading_profession():
@@ -256,8 +271,9 @@ def loading_data():
     loading_direction_training()
     loading_skill()
     loading_course()
-    loading_course_skill()
+ #   loading_course_skill()
     loading_lesson()
+    loading_lesson_skill()
     loading_profession()
     loading_profession_skill()
     loading_profession_course()

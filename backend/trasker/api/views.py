@@ -5,7 +5,7 @@ from rest_framework import mixins, status, viewsets
 import requests
 
 from api.serializers import TrackerSerializer
-from professions.models import (Course, CourseSkill, Lesson,
+from professions.models import (Course, Lesson, #CourseSkill,
                                  Profession, ProfessionCourse,
                                 ProfessionSkill, RecruitmentCompany,
                                 Skill, DirectionTraining,
