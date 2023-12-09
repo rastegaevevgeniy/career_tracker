@@ -1,29 +1,14 @@
-# Используем официальный образ Node.js с Alpine Linux
-FROM node:18-alpine as build
-
-# Устанавливаем рабочую директорию
+FROM node:18
 WORKDIR /app
 
-# Копируем файлы package.json и package-lock.json (если есть)
-COPY package*.json ./
+COPY package.json package.json
+COPY package-lock.json package-lock.json
 
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем все файлы в рабочую директорию контейнера
 COPY . .
-
-# Выполняем сборку приложения
 RUN npm run build
 
-# Настроим финальный контейнер для минимального размера
-FROM node:18-alpine
-
-# Устанавливаем рабочую директорию
-WORKDIR /app
-
-# Копируем результаты сборки из контейнера сборки
-COPY --from=build /app/build /app/result_build
-
-# Команда по умолчанию, выполняемая при запуске контейнера
-CMD ["cp", "-r", "result_build", "/app/result_build"]
+# Эта команда запустит встроенный сервер на Node.js, который будет раздавать
+# содержимое директории /app/build на порте 8000
+CMD ["npx", "-y", "http-server", "-p", "8000", "/app/build"]
