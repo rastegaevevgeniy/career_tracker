@@ -44,10 +44,10 @@ class Course(BaseName):
         verbose_name='Длительность курса',
         validators=[MinValueValidator(0)]
     )
-    skill = models.ManyToManyField(
-        Skill, through='CourseSkill',
-        verbose_name='Навыки',
-    )
+#    skill = models.ManyToManyField(
+#        Skill, through='CourseSkill',
+#        verbose_name='Навыки',
+#    )
     direction_training = models.ForeignKey(
         DirectionTraining,
         on_delete=models.CASCADE,
@@ -74,23 +74,23 @@ class Course(BaseName):
             name='name_direction_training')])
 
 
-class CourseSkill(models.Model):
-    course = models.ForeignKey(
-        Course,
-        on_delete=models.CASCADE,
-    )
-    skill = models.ForeignKey(
-        Skill,
-        on_delete=models.CASCADE,
-    )
+#class CourseSkill(models.Model):
+#    course = models.ForeignKey(
+#        Course,
+#        on_delete=models.CASCADE,
+#    )
+#    skill = models.ForeignKey(
+#        Skill,
+#        on_delete=models.CASCADE,
+#    )
 
-    class Meta:
-        default_related_name = 'courses_skills'
-        verbose_name = 'Курс-Навык'
-        verbose_name_plural = 'Курсы-Навыки'
-        constraints = ([models.UniqueConstraint(
-            fields=['course', 'skill'],
-            name='course_skill')])
+#    class Meta:
+#        default_related_name = 'courses_skills'
+#        verbose_name = 'Курс-Навык'
+#        verbose_name_plural = 'Курсы-Навыки'
+#        constraints = ([models.UniqueConstraint(
+#            fields=['course', 'skill'],
+#            name='course_skill')])
 
 
 class Lesson(BaseName):
@@ -104,14 +104,37 @@ class Lesson(BaseName):
         on_delete=models.CASCADE,
         verbose_name='Курс',
     )
+    skill = models.ManyToManyField(
+        Skill, through='LessonSkill',
+        verbose_name='Навыки',
+    )
 
     class Meta:
         verbose_name = 'Лекция'
         verbose_name_plural = 'Лекции'
-        default_related_name = 'lessions'
+        default_related_name = 'lessons'
         constraints = ([models.UniqueConstraint(
             fields=['name', 'course'],
             name='name_course')])
+
+
+class LessonSkill(models.Model):
+    lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE,
+    )
+    skill = models.ForeignKey(
+        Skill,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        default_related_name = 'lesson_skills'
+        verbose_name = 'Лекция-Навык'
+        verbose_name_plural = 'Лекции-Навыки'
+        constraints = ([models.UniqueConstraint(
+            fields=['lesson', 'skill'],
+            name='lesson_skill')])
 
 
 class Profession(BaseName):
