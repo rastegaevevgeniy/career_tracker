@@ -3,11 +3,15 @@ import "./ModalProgress.scss";
 import { api } from '../../utils/Api/Api';
 import { YourDataType } from '../../utils/Api/ApiConst';
 import Skills from '../Skills/Skills';
-// import ModalBlock from '../../components/ModalBlock/ModalBlock'
+import { CLOSE_ICON } from '../../utils/constants';
+import { closeModal } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Typography,
   LinearProgress,
   Box,
+  Modal,
+  SvgIcon,
 } from '@mui/material';
 
   const dataSkills = [
@@ -37,6 +41,12 @@ import {
 const ModalProgress: React.FC = () => {
   const [dataUser, setDataUser] = useState<YourDataType[] | null>(null);
 
+  interface RootState {
+    isProgressModalOpen: boolean;
+  }
+
+  const dispatch = useDispatch();
+  const isProgressModalOpen = useSelector((state: RootState) => state.isProgressModalOpen);
 
   useEffect(() => {
     api
@@ -45,6 +55,16 @@ const ModalProgress: React.FC = () => {
       .catch((err) => console.log(`Ошибка ${err}`))
   }, [])
 
+  const styleModal = {
+    height: '100%',
+    right: '0',
+    position: 'absolute',
+    width: "936px",
+    bgcolor: '#F1F3F7',
+    padding: "36px 40px",
+    overflowY: 'auto',
+  };
+
   const styleSkills = {
     bgcolor: '#FFF',
     borderRadius: '10px',
@@ -52,7 +72,22 @@ const ModalProgress: React.FC = () => {
   }
 
   return (
-    // <ModalBlock title='Прогресс'>
+    <div className='x'>
+      {isProgressModalOpen !== undefined &&
+        <Modal
+          open={isProgressModalOpen}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleModal}>
+            <div className='title'>
+              <h2 className='title__text'>Прогресс</h2>
+              <button className='title__button' onClick={() => dispatch(closeModal())}>
+                <SvgIcon>
+                  {CLOSE_ICON}
+                </SvgIcon>
+              </button>
+            </div>
       <Box sx={styleSkills}>
         <div className='block'>
           <div className='block__title'>
@@ -87,7 +122,10 @@ const ModalProgress: React.FC = () => {
           </Typography>
         </div>
       </Box>
-    // </ModalBlock>
+      </Box>
+      </Modal>
+    }
+    </div>
   );
 };
 

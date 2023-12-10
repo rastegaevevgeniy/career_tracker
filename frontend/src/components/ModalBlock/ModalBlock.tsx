@@ -24,10 +24,7 @@ const ModalBlock: React.FC<BlockProps> = ({ children, title }) => {
   }
 
   const dispatch = useDispatch();
-  const isSkillsModalOpen = useSelector((state: RootState) => {
-    console.log(state.isSkillsModalOpen);
-    return state.isSkillsModalOpen;
-  });
+  const isSkillsModalOpen = useSelector((state: RootState) => state.isSkillsModalOpen);
   const isProgressModalOpen = useSelector((state: RootState) => state.isProgressModalOpen);
 
   const styleModal = {

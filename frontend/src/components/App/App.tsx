@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Menu from "../Menu/Menu";
 import ModalSkill from "../ModalSkill/ModalSkill";
+import ModalProgress from "../ModalProgress/ModalProgress";
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/recommendations" element={<Main />} />
         </Routes>
         <ModalSkill />
+        <ModalProgress />
       </div>
   )
 }
