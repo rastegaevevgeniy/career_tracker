@@ -3,7 +3,7 @@ name: Main Tracker workflow
 on:
   push:
     branches:
-      - main
+      - develop
 jobs:
   tests:
     runs-on: ubuntu-latest
