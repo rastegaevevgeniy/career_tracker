@@ -70,6 +70,7 @@ const ModalProgress: React.FC = () => {
     bgcolor: '#FFF',
     borderRadius: '10px',
     padding: '14px',
+    marginBottom: '24px',
   }
 
   return (
@@ -91,8 +92,13 @@ const ModalProgress: React.FC = () => {
             </div>
             <Box sx={styleSkills}>
               <div className='block'>
-              <Chart />
-                {/* <div className='block__title'>
+                <Chart />
+              </div>
+            </Box>
+            <Box sx={styleSkills}>
+              <div className='block'>
+              
+                <div className='block__title'>
                   <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
                     Твоя цель
                   </Typography>
@@ -106,7 +112,7 @@ const ModalProgress: React.FC = () => {
                   }} variant="h6" gutterBottom>
                     Middle
                   </Typography>
-                </div> */}
+                </div>
                 <Box sx={{ width: '572px', display: "grid", alignContent: 'center' }}>
                   <LinearProgress variant="determinate" value={60} // Сюда закинуть процент расчитанный от показателей бэка
                     sx={{
