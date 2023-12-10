@@ -106,13 +106,32 @@ const ModalSkill: React.FC = () => {
                     Middle
                   </Typography>
                 </div>
-                <Box sx={{ width: '572px', display: "grid", alignContent: 'center' }}>
-                  <LinearProgress variant="determinate" value={60} // Сюда закинуть процент расчитанный от показателей бэка
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr max-content', alignItems: 'center', width: '572px' }}>
+                  <LinearProgress
+                    variant="determinate"
+                    value={60}
                     sx={{
-                      height: "12px", borderRadius: '12px',
+                      height: '12px',
+                      borderRadius: '12px',
                       '& .css-5xe99f-MuiLinearProgress-bar1': { backgroundColor: '#87CC9E', borderRadius: '12px' },
                       backgroundColor: '#5A9BFF',
-                    }} />
+                      gridColumn: '1 / 2',
+                    }}
+                  />
+                  <Typography 
+                    variant="caption" 
+                    sx={{ 
+                      fontFamily: 'Yandex Sans Text, Arial, sans-serif', 
+                      color: '#1A1B22', 
+                      gridColumn: '2 / 3',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: '1.25',
+                      paddingLeft: '8px'
+                    }}>
+                    60%
+                  </Typography>
                 </Box>
               </div>
               <Skills dataSkills = {dataSkills}/>

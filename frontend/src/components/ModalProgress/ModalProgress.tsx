@@ -13,6 +13,7 @@ import {
   Box,
   Modal,
   SvgIcon,
+  Grid,
 } from '@mui/material';
 
   const dataSkills = [
@@ -97,7 +98,6 @@ const ModalProgress: React.FC = () => {
             </Box>
             <Box sx={styleSkills}>
               <div className='block'>
-              
                 <div className='block__title'>
                   <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
                     Твоя цель
@@ -113,15 +113,34 @@ const ModalProgress: React.FC = () => {
                     Middle
                   </Typography>
                 </div>
-                <Box sx={{ width: '572px', display: "grid", alignContent: 'center' }}>
-                  <LinearProgress variant="determinate" value={60} // Сюда закинуть процент расчитанный от показателей бэка
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr max-content', alignItems: 'center', width: '572px' }}>
+                  <LinearProgress
+                    variant="determinate"
+                    value={60}
                     sx={{
-                      height: "12px", borderRadius: '12px',
+                      height: '12px',
+                      borderRadius: '12px',
                       '& .css-5xe99f-MuiLinearProgress-bar1': { backgroundColor: '#87CC9E', borderRadius: '12px' },
                       backgroundColor: '#5A9BFF',
-                    }} />
+                      gridColumn: '1 / 2',
+                    }}
+                  />
+                  <Typography 
+                    variant="caption" 
+                    sx={{ 
+                      fontFamily: 'Yandex Sans Text, Arial, sans-serif', 
+                      color: '#1A1B22',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: '1.25',
+                      paddingLeft: '8px', 
+                      gridColumn: '2 / 3' 
+                    }}>
+                    250 к
+                  </Typography>
                 </Box>
-              </div>
+                </div>
               <Skills dataSkills = {dataSkills}/>
               <div className='block'>
                 <Typography variant="caption" display="block"
@@ -130,7 +149,7 @@ const ModalProgress: React.FC = () => {
                 </Typography>
               </div>
             </Box>
-      </Box>
+        </Box>
       </Modal>
     }
     </div>
