@@ -3,6 +3,7 @@ import './Chart.scss'
 import { RootState } from '../../redux/reducers';
 import { useSelector } from 'react-redux';
 import { AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area, ReferenceLine } from 'recharts';
+import { Typography } from '@mui/material';
 
 const Chart: React.FC = () => {
 
@@ -27,25 +28,55 @@ const Chart: React.FC = () => {
 
   return (
       <div className="chart-container">
-        <AreaChart width={800} height={400} data={salaryData}>
+        <Typography variant="h6" component="h3" className="chart-container__title">
+          Процесс роста заработной платы
+        </Typography>
+        <Typography className="chart-container__text">
+          Стоимость релевантных вакансий ₽ тыс.
+        </Typography>
+        <AreaChart width={800} height={270} data={salaryData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis domain={[0, 250]} />
+          <XAxis 
+            dataKey="month" 
+            style={{
+              fontFamily: 'Yandex Sans Text',
+              fontSize: '11px',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: '12px',
+              color: '#1A1B22',
+            }}
+            tickMargin={8} // Отступ от оси
+          />
+          <YAxis
+            domain={[0, 250]}
+            ticks={[50, 100, 150, 200, 250]}
+            style={{
+              fontFamily: 'Yandex Sans Text',
+              fontSize: '11px',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: '12px',
+              textAnchor: 'end', // Для правильного выравнивания текста
+              color: '#1A1B22',
+            }}
+            tickMargin={30} // Отступ от оси
+          />
           <Tooltip />
 
           {/* Область до текущего месяца с градиентом */}
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="1" y2="0">
-              <stop offset={off} stopColor="green" stopOpacity={1} />
-              <stop offset={off} stopColor="red" stopOpacity={1} />
+              <stop offset={off} stopColor="#87CC9E" stopOpacity={1} />
+              <stop offset={off} stopColor="#ACCCFF" stopOpacity={1} />
             </linearGradient>
           </defs>
 
           <Area
-            type="monotone" dataKey="salary" stroke="#8884d8" fill="url(#splitColor)"
+            type="monotone" dataKey="salary" stroke="#B5B5B7" fill="url(#splitColor)"
           />
 
-          {currentMonth && <ReferenceLine x={currentMonth} stroke="red" strokeDasharray="3 3" label="Current Month" />}
+          {currentMonth && <ReferenceLine x={currentMonth} stroke="#B5B5B7" strokeDasharray="3 3" />}
         </AreaChart>
       </div>
   )

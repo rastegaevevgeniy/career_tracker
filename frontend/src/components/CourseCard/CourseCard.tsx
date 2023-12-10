@@ -11,6 +11,8 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ title, progressValue, lessonLearned, totalLessons }) => {
   
+  const progressColor = progressValue === 100 ? '#87CC9E' : '#5A9BFF';
+
   return (
     <div className="progress-card">
       <Typography variant="h6" component="h3">
@@ -22,7 +24,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ title, progressValue, lessonLea
           value={progressValue} 
           variant="determinate" 
           style={{
-            color: '#5A9BFF',
+            color: progressColor,
             transform: 'rotate(90deg)',
           }}
           size={32}
