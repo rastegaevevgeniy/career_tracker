@@ -38,7 +38,7 @@ jobs:
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
       run: |
-        cd backend/tracker/
+        cd backend/
         python -m flake8 --extend-ignore=W503,E501 tracker/
 
   build_and_push_to_docker_hub:
