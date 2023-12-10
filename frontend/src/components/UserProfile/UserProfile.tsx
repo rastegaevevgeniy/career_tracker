@@ -4,7 +4,7 @@ import { Button, Card, CardContent, Typography, Box, SvgIcon } from '@mui/materi
 import './UserProfile.scss';
 import { PROFILE_ICON } from "../../utils/constants";
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../actions';
+import { openModal } from '../../redux/actions';
 
 const UserProfile: React.FC = () => {
 

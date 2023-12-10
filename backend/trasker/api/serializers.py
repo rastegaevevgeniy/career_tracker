@@ -3,20 +3,9 @@ from datetime import date
 from django.conf import settings
 from rest_framework import serializers
 
-from professions.models import Course, Lesson, Profession, Skill, Vacancy
+from api.utils import get_lessons_skills
+from professions.models import Course, Lesson, Profession, Vacancy
 from users.models import CourseUser, User
-
-
-def get_course_skills(lessons_course):
-    lesson_skills = {}
-    for lesson in lessons_course:
-        skills = Skill.objects.filter(lessons=lesson).all()
-        for skill in skills:
-            if lesson_skills.get(skill.name):
-                lesson_skills[skill.name] += 1
-            else:
-                lesson_skills[skill.name] = 1
-    return lesson_skills
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -56,11 +45,20 @@ class MyCourseSerializer(serializers.ModelSerializer):
                                      context['user'][0], course=obj.id).count()
 
     def get_skills(self, obj):
-        course_skills = get_course_skills(obj.lessons.all())
-        user_skills = get_course_skills(
-            Lesson.objects.filter(leksion_users__user=self.context['user'][0],
-                                  course=obj.id).all()
+        course_lessons = (
+            dict((item.name,
+                  list(item.skill.values_list('name',
+                                              flat=True))) for item in obj.
+                 lessons.all())
         )
+        course_skills = get_lessons_skills(course_lessons)
+        user_lessons = (
+            dict((item.name,
+                  list(item.skill.values_list('name',
+                                              flat=True))) for item in Lesson.
+                 objects.filter(leksion_users__user=self.context['user'][0],
+                                course=obj.id).all()))
+        user_skills = get_lessons_skills(user_lessons)
         skills = {'mastered': [], 'not_mastered': []}
         for item in course_skills:
             if (user_skills.

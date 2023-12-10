@@ -5,13 +5,10 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Menu from "../Menu/Menu";
 import ModalSkill from "../ModalSkill/ModalSkill";
-import { Provider } from 'react-redux';
-import store from '../../store';
 
 export default function App() {
 
   return (
-    <Provider store={store}>
       <div className="App">
         <Header />
         <Menu />
@@ -21,6 +18,5 @@ export default function App() {
         </Routes>
         <ModalSkill />
       </div>
-    </Provider>
   )
 }
