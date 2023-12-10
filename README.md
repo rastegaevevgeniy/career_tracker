@@ -84,3 +84,13 @@ docker compose exec backend cp -r /app/static/. /backend_static/static/
 ```
 http://localhost:8000/api/
 ```
+
+### Документация по API
+
+```
+http://localhost:8000/api/redoc
+
+```
+'''
+http://localhost:8000/api/docs
+'''
