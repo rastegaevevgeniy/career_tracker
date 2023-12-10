@@ -13,13 +13,13 @@ export interface RootState {
 }
 
 const initialSalaryData: SalaryData[] = [
-  { month: 'Янв', salary: 50 },
-  { month: 'Фев', salary: 70 },
-  { month: 'Мар', salary: 100 },
-  { month: 'Апр', salary: 110 },
+  { month: 'Январь', salary: 50 },
+  { month: 'Февраль', salary: 70 },
+  { month: 'Март', salary: 100 },
+  { month: 'Апрель', salary: 110 },
   { month: 'Май', salary: 150 },
-  { month: 'Июн', salary: 175 },
-  { month: 'Июл', salary: 250 },
+  { month: 'Июнь', salary: 175 },
+  { month: 'Июль', salary: 250 },
 ];
 
 const initialState: RootState = {

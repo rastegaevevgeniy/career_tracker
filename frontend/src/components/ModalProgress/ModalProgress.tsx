@@ -13,7 +13,6 @@ import {
   Box,
   Modal,
   SvgIcon,
-  Grid,
 } from '@mui/material';
 
   const dataSkills = [
@@ -100,7 +99,7 @@ const ModalProgress: React.FC = () => {
               <div className='block'>
                 <div className='block__title'>
                   <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
-                    Твоя цель
+                  ЗП с освоенными навыками
                   </Typography>
                   <Typography id="modal-modal-description" sx={{
                     fontFamily: 'Yandex Sans Text, Arial, sans-serif',
@@ -110,7 +109,7 @@ const ModalProgress: React.FC = () => {
                     lineHeight: '24px',
                     paddingTop: "8px",
                   }} variant="h6" gutterBottom>
-                    Middle
+                    150 000 ₽
                   </Typography>
                 </div>
                 <Box sx={{ display: 'grid', gridTemplateColumns: '1fr max-content', alignItems: 'center', width: '572px' }}>
