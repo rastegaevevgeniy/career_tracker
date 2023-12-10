@@ -1,50 +1,20 @@
 # career_tracker
-provides analytical data in the career track
-Вывод аналитических данных для карьерного трека
 
+## Цель проекта: Вывод аналитических данных для карьерного трека Яндекса в рамках проекта Хакатон+
+Provides analytical data in the career track.
 
-kdjbn'sdfmkhnd;bns;dgnb
+Проект СAREER_TRACKER позволяет облегчит предоставление пользователю сведений о возможности повышения своих навыков, в стремлении достижения желаемого уровня своего профессионального развития, а также возможные вакансии на рассматриваемые профессии.
 
+## Технологии
+Python==3.9,
+Django==4.2.7,
+PostgreSQL,
+RestAPI,
+Nginx,
+Dosker,
+Dosker-Compose
 
-### Запуск Backend
-в базовой папке проекта запустить venv (возмоен вариант python3 ... )
-```
-python -m venv venv
-```
-Запустить виртуальное окружение:
-для windows:
-```
-source venv/Scripts/activate 
-```
-для linux:
-```
-source venv/bin/activate
-```
-установить зависимости:
-```
-pip install -r requirements.txt
-```
-перейти в дирректорию  backend/tracker
-и запустить миграции
-```
-python manage.py makemigrations
-```
-```
-python manage.py migrate
-```
-загрузить данные:
-```
-python manage.py load_data
-```
-Запустить выполнение:
-```
-python manage.py runserver
-```
- 
-
-если возникли проблемы с миграцией при повторном разворачивании проекта - удалите db.sqlite3 и повторите выполнение миграций (это из-за того, что меняю модели)
-python3 manage.py runserver
-
+## Как запустить проект
 
 ### запуск контейнера Docker для backend:
 ```
@@ -85,12 +55,46 @@ docker compose exec backend cp -r /app/static/. /backend_static/static/
 http://localhost:8000/api/
 ```
 
-### Документация по API
+### Необходимые переменные окружения
+
+DB_ENGINE  # используемая база данных
+DB_NAME  # имя базы данных
+POSTGRES_USER  # логин для подключения к базе данных
+POSTGRES_PASSWORD  # пароль для подключения к БД
+DB_HOST  # название сервиса
+DB_PORT  # порт для подключения к БД
+SECRET_KEY  # ключ к защите подписанных данных
+DOCKER_USERNAME  # имя пользователя в DockerHub
+DOCKER_PASSWORD  # пароль пользователя в DockerHub
+HOST  # ip-адрес сервера
+USER  # пользователь
+SSH_KEY  # приватный ssh-ключ
+PASSPHRASE  # пароль для ssh-ключа
+
+## Документация к API и примеры запросов доступны по ссылке в проекте:
 
 ```
-http://localhost:8000/api/redoc
+http://<host>/api/redoc
 
 ```
 '''
-http://localhost:8000/api/docs
+http://<host>/api/docs
 '''
+
+## Разработчики проекта
+
+### Product mfnager:
+Анна
+### Systems_Analytyst:
+Руслан
+### Команда дизайна:
+Павел, 
+Екатерина
+### Команда Frontend
+Валентина,
+Ирена
+### Команда Backend
+Евгений,
+Вугар
+
+[ссылка на развернутый проект, актуальна на 11.12.2023](https://tracker.ddnsking.com/)
