@@ -17,25 +17,20 @@ import {
 
   const dataSkills = [
     {
-      p: 'Уже усвоено',
+      p: 'Пройденные курсы',
       color: { backgroundColor: '#87CC9E', borderRadius: '6px' },
       name: ['Экономика и бизнес-модель продукта', 'dfyz', 'ofgaorf', 'fddgvna;ijnv;osnhdiouv;iabv']
     },
     {
-      p: 'Нужно освоить',
+      p: 'Текущие курсы',
       color: { backgroundColor: '#ACCCFF', borderRadius: '6px' },
       name: ['Экономика и бизнес-модель продукта', 'dfyz']
     },
     {
-      p: 'Текущий курс',
+      p: 'Рекомендовано',
       color: { backgroundColor: '#FFDDE5', borderRadius: '6px' },
       name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    },
-    {
-      p: `Рекомендованные  \nкурсы`,
-      color: { backgroundColor: '#F3F3F3', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    },
+    }
   ];
 
 
@@ -141,12 +136,6 @@ const ModalProgress: React.FC = () => {
                 </Box>
                 </div>
               <Skills dataSkills = {dataSkills}/>
-              <div className='block'>
-                <Typography variant="caption" display="block"
-                  sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
-                  Осталось учиться
-                </Typography>
-              </div>
             </Box>
         </Box>
       </Modal>
