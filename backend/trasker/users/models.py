@@ -2,8 +2,9 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from professions.models import Profession, Lesson, Course, Vacancy  
+from professions.models import Course, Lesson, Profession
 from users.validators import validate_username
+
 
 class User(AbstractUser):
     """Модель для работы с пользователями"""
@@ -46,7 +47,6 @@ class User(AbstractUser):
         Lesson, through='LessonUser',
         verbose_name='Лекции',
     )
-
 
     class Meta:
         ordering = ('username', )

@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
+    'drf_spectacular',
 ]
 
 DJOSER = {
@@ -135,8 +136,7 @@ REST_FRAMEWORK = {
         'user': '1000/day',
         'anon': '100/day',
     },
- #   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
- #   'PAGE_SIZE': 6,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 AUTH_USER_MODEL = 'users.User'
@@ -146,7 +146,6 @@ FILE = {
     'direction_training': os.path.join(BASE_DIR, 'data/direction_training.csv'),
     'skill': os.path.join(BASE_DIR, 'data/skill.csv'),
     'course': os.path.join(BASE_DIR, 'data/course.csv'),
- #   'course_skill': os.path.join(BASE_DIR, 'data/course_skill.csv'),
     'lesson': os.path.join(BASE_DIR, 'data/lesson.csv'),
     'lesson_skill': os.path.join(BASE_DIR, 'data/lesson_skill.csv'),
     'profession': os.path.join(BASE_DIR, 'data/profession.csv'),
@@ -161,12 +160,9 @@ FILE = {
 }
 
 DATE = '%Y-%m-%d'
-#MODEL_STR_LIMIT = 15
-#LENGTH7 = 7
-LENGTH16 = 30
+LENGTH30 = 30
 LENGTH50 = 50
 LENGTH150 = 150
 LENGTH254 = 254
-
 NUMBER_VACANCIES = 4
 CORS_ORIGIN_ALLOW_ALL = True

@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from professions.models import (Course, Lesson, LessonSkill, Profession,
-                                ProfessionCourse, ProfessionSkill, #CourseSkill, 
-                                RecruitmentCompany, Skill,
-                                DirectionTraining, Vacancy, VacancySkill)
+from professions.models import (Course, DirectionTraining, Lesson, LessonSkill,
+                                Profession, ProfessionCourse, ProfessionSkill,
+                                RecruitmentCompany, Skill, Vacancy,
+                                VacancySkill)
 
 
 class SkillAdmin(admin.ModelAdmin):
@@ -21,11 +21,6 @@ class CourseAdmin(admin.ModelAdmin):
                     'course_cost_full', 'course_per_month', 'link_course')
     search_fields = ('name', 'direction_training')
     list_filter = ('name',)
-
-
-#class CourseSkillAdmin(admin.ModelAdmin):
-#    list_display = ('course', 'skill')
-#    list_filter = ('course',)
 
 
 class LessonAdmin(admin.ModelAdmin):
@@ -74,7 +69,6 @@ class VacancySkillAdmin(admin.ModelAdmin):
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(DirectionTraining, DirectionTrainingAdmin)
 admin.site.register(Course, CourseAdmin)
-#admin.site.register(CourseSkill, CourseSkillAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(LessonSkill, LessonSkillAdmin)
 admin.site.register(Profession, ProfessionAdmin)

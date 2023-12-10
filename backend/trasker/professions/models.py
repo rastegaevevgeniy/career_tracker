@@ -44,10 +44,6 @@ class Course(BaseName):
         verbose_name='Длительность курса',
         validators=[MinValueValidator(0)]
     )
-#    skill = models.ManyToManyField(
-#        Skill, through='CourseSkill',
-#        verbose_name='Навыки',
-#    )
     direction_training = models.ForeignKey(
         DirectionTraining,
         on_delete=models.CASCADE,
@@ -72,25 +68,6 @@ class Course(BaseName):
         constraints = ([models.UniqueConstraint(
             fields=['name', 'direction_training'],
             name='name_direction_training')])
-
-
-#class CourseSkill(models.Model):
-#    course = models.ForeignKey(
-#        Course,
-#        on_delete=models.CASCADE,
-#    )
-#    skill = models.ForeignKey(
-#        Skill,
-#        on_delete=models.CASCADE,
-#    )
-
-#    class Meta:
-#        default_related_name = 'courses_skills'
-#        verbose_name = 'Курс-Навык'
-#        verbose_name_plural = 'Курсы-Навыки'
-#        constraints = ([models.UniqueConstraint(
-#            fields=['course', 'skill'],
-#            name='course_skill')])
 
 
 class Lesson(BaseName):
@@ -144,7 +121,7 @@ class Profession(BaseName):
         verbose_name='Имя'
     )
     level = models.TextField(
-        max_length=settings.LENGTH16,
+        max_length=settings.LENGTH30,
         verbose_name='Уровень'
     )
     salary = models.PositiveIntegerField(
@@ -235,7 +212,7 @@ class Vacancy(BaseName):
         validators=[MinValueValidator(1)]
     )
     salary_measurement = models.TextField(
-        max_length=settings.LENGTH16,
+        max_length=settings.LENGTH30,
         verbose_name='Единица измерения'
     )
     date = models.DateField(
