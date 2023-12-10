@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./ModalSkill.scss";
+import "./ModalProgress.scss";
 import { api } from '../../utils/Api/Api';
 import { YourDataType } from '../../utils/Api/ApiConst';
 import Skills from '../Skills/Skills';
@@ -34,7 +34,7 @@ import {
   ];
 
 
-const ModalSkill: React.FC = () => {
+const ModalProgress: React.FC = () => {
   const [dataUser, setDataUser] = useState<YourDataType[] | null>(null);
 
 
@@ -52,7 +52,7 @@ const ModalSkill: React.FC = () => {
   }
 
   return (
-    // <ModalBlock title='Навыки'>
+    // <ModalBlock title='Прогресс'>
       <Box sx={styleSkills}>
         <div className='block'>
           <div className='block__title'>
@@ -85,14 +85,10 @@ const ModalSkill: React.FC = () => {
             sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
             Осталось учиться
           </Typography>
-          <Typography variant="caption" display="block"
-            sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
-            3 месяца из 12
-          </Typography>
         </div>
       </Box>
     // </ModalBlock>
   );
 };
 
-export default ModalSkill;
+export default ModalProgress;

@@ -2,36 +2,19 @@ import React from 'react';
 import { Grid, ListItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import "../ModalSkill/ModalSkill.scss";
+import "./Skills.scss";
 
-const Skills = () => {
+interface Skill {
+  p: string;
+  color: React.CSSProperties;
+  name: string[];
+}
 
-  const dataSkills = [
-    {
-      p: 'Уже усвоено',
-      color: { backgroundColor: '#87CC9E', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz', 'ofgaorf', 'fddgvna;ijnv;osnhdiouv;iabv']
-    },
-    {
-      p: 'Нужно освоить',
-      color: { backgroundColor: '#ACCCFF', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    },
-    {
-      p: 'Текущий курс',
-      color: { backgroundColor: '#FFDDE5', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    },
-    {
-      p: `Рекомендованные  \nкурсы`,
-      color: { backgroundColor: '#F3F3F3', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    },
-    // {
-  //     p: 'Осталось учиться',
-  //     name: ['3 месяца из 12']
-    // },
-  ];
+interface SkillsProps {
+  dataSkills: Skill[];
+}
+
+const Skills: React.FC<SkillsProps> = ({ dataSkills }) => {
 
     return (
       <div>
