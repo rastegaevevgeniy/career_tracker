@@ -94,3 +94,4 @@ http://localhost:8000/api/redoc
 '''
 http://localhost:8000/api/docs
 '''
+d
