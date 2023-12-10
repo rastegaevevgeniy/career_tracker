@@ -6,11 +6,15 @@
   border-radius: 10px;
   background: #FFF;
 
+  .reccomend-card__text {
+    font-family: 'Yandex Sans Text';
+  }
+
   .reccomend-card__info {
     display: flex;
     gap: 4px;
     align-items: center;
-    // font-family: 'Yandex Sans Text';
+    font-family: 'Yandex Sans Text';
     color: #797981;
     font-size: 13px;
     font-style: normal;
@@ -19,7 +23,7 @@
   }
 
   .reccomend-card__title {
-    // font-family: YS Display;
+    font-family: 'Yandex Sans Display';
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -29,7 +33,7 @@
   }
 
   .reccomend-card__description {
-    // font-family: YS Text;
+    font-family: 'Yandex Sans Text';
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
@@ -46,7 +50,7 @@
     justify-content: center;
     align-items: center;
     color: #410490;
-    // font-family: YS Text;
+    font-family: 'Yandex Sans Text';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
