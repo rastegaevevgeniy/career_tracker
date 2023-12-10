@@ -1,6 +1,5 @@
-from rest_framework import viewsets
-
 from api.serializers import TrackerSerializer
+from rest_framework import viewsets
 from users.models import User
 
 user = User.objects.filter(id=1)

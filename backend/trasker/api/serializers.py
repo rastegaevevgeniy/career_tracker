@@ -1,10 +1,9 @@
 from datetime import date
 
-from django.conf import settings
-from rest_framework import serializers
-
 from api.utils import get_lessons_skills
+from django.conf import settings
 from professions.models import Course, Lesson, Profession, Vacancy
+from rest_framework import serializers
 from users.models import CourseUser, User
 
 

@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from professions.models import (Course, DirectionTraining, Lesson, LessonSkill,
                                 Profession, ProfessionCourse, ProfessionSkill,
                                 RecruitmentCompany, Skill, Vacancy,
