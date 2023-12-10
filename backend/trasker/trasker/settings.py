@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
+    'drf_spectacular',
 ]
 
 DJOSER = {
@@ -136,6 +137,7 @@ REST_FRAMEWORK = {
         'user': '1000/day',
         'anon': '100/day',
     },
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 AUTH_USER_MODEL = 'users.User'
