@@ -3,7 +3,8 @@ import "./ModalSkill.scss";
 import { api } from '../../utils/Api/Api';
 import { CLOSE_ICON } from '../../utils/constants';
 import { YourDataType } from '../../utils/Api/ApiConst';
-import { closeModal } from '../../actions';
+// import { closeModal } from '../../redux/modal/actions.js';
+import { closeModal } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Skills from '../Skills/Skills';
 import {

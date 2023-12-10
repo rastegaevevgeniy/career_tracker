@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../actions';
+import { openModal } from '../../redux/actions';
 
 const ProgressBlock: React.FC = () => {
 
