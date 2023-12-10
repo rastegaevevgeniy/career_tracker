@@ -53,11 +53,11 @@ class Course(BaseName):
         on_delete=models.CASCADE,
         verbose_name='Направление обучения',
     )
-    course_cost_full = models.PositiveSmallIntegerField(
+    course_cost_full = models.PositiveIntegerField(
         verbose_name='Полная стоимость обучения',
         validators=[MinValueValidator(1)]
     )
-    course_per_month = models.PositiveSmallIntegerField(
+    course_per_month = models.PositiveIntegerField(
         verbose_name='Ежемесячная стоимость обучения',
         validators=[MinValueValidator(1)]
     )
@@ -95,7 +95,7 @@ class Course(BaseName):
 
 class Lesson(BaseName):
     """Модель лекции."""
-    duration_training = models.PositiveSmallIntegerField(
+    duration_training = models.PositiveIntegerField(
         verbose_name='Продолжительность лекции',
         validators=[MinValueValidator(1)]
     )
@@ -147,7 +147,7 @@ class Profession(BaseName):
         max_length=settings.LENGTH16,
         verbose_name='Уровень'
     )
-    salary = models.PositiveSmallIntegerField(
+    salary = models.PositiveIntegerField(
         verbose_name='Заработная плата',
         validators=[MinValueValidator(1)]
     )
@@ -230,7 +230,7 @@ class Vacancy(BaseName):
         on_delete=models.CASCADE,
         verbose_name='Вакансия',
     )
-    salary = models.PositiveSmallIntegerField(
+    salary = models.PositiveIntegerField(
         verbose_name='Стоимость',
         validators=[MinValueValidator(1)]
     )
