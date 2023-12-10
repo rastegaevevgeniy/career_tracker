@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import Group
-
 from users.models import CourseUser, LessonUser, ProfessionUser, User
 
 
