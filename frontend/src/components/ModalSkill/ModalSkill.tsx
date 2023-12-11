@@ -25,7 +25,7 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
   const isSkillsModalOpen = useSelector((state: RootState) => state.isSkillsModalOpen);
 
   const styleModal = {
-    height: '821px',
+    height: '100%',
     right: '0',
     position: 'absolute',
     width: "936px",
@@ -44,7 +44,8 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
   return (
     <div className='x'>
       {isSkillsModalOpen !== undefined &&
-        <Modal
+        <Modal 
+          sx={{height: '100%'}}
           open={isSkillsModalOpen}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
