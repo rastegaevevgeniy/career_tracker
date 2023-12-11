@@ -12,7 +12,7 @@ class Api {
   }
 
   getInitialTracker() {
-    return fetch("http://127.0.0.1:8000/api/tracker/", {
+    return fetch("https://89.104.69.46/api/tracker", {
       method: "GET",
       headers: { "content-type": "application/json" },
     }).then((res) => this._checkResponse(res))
