@@ -69,7 +69,7 @@ export default function App() {
     api
       .getInitialTracker()
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setDataUser(data)
       })
       .catch((err) => console.log(`Ошибка ${err}`))
