@@ -1,0 +1,23 @@
+.courses-block{
+  .css-2ulfj5-MuiTypography-root{
+    font-family: 'Yandex Sans Display';
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.17;
+    padding-bottom: 24px;
+  }
+
+  .courses-block__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 388px);
+    gap: 20px;
+    justify-content: start;
+
+    .css-1p823my-MuiListItem-root {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.chart-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .chart-container__title {
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1; 
+    font-family: 'Yandex Sans Display';
+    margin-top: 6px;
+  }
+
+  .chart-container__text {
+    font-family: 'Yandex Sans Text';
+    max-width: 68px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px;
+    color: #1A1B22;
+    margin-left: 36px;
+    margin-bottom: 22px;
+  }
+}

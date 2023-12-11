@@ -1,0 +1,52 @@
+.menu {
+  width: 156px;
+  background: #1A1B22;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  // height: calc(100% - 62px);
+  height: 100%;
+  color: #B5B5B7;
+  padding-top: 64px;
+
+  .menu__container-top {
+    margin-top: 36px;
+  }
+
+  .menu__container-bottom {
+    position: absolute;
+    bottom: 40px;
+  }
+
+  .MuiTypography-root {
+    font-family: "Yandex Sans Text", "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.42;
+  }
+
+  .MuiListItemIcon-root {
+    min-width: 16px;
+    margin-right: 10px;
+  }
+
+  .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+    padding: 2px 0 1px 20px;
+  }
+
+  .MuiList-root {
+    padding: 4px 0;
+  }
+
+  .MuiSvgIcon-root {
+    width: 16px;
+    height: 16px;
+  }
+
+  .menu_text {
+    margin: 0;
+  }
+}
+
+
+

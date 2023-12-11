@@ -1,0 +1,42 @@
+.achive-card {
+  position: relative;
+  width: 196px;
+  height: 238px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #FFF;
+
+  .achive-card__title {
+    font-family: 'Yandex Sans Text';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .achive-card__data {
+    font-family: 'Yandex Sans Text';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.23;
+    color: #797981;
+  }
+
+  .achive-card__image {
+    width: 180px;
+    height: 134px;
+    border-radius: 0;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .achive-card__description {
+    font-family: 'Yandex Sans Text';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.23;
+  }
+}

@@ -1,0 +1,37 @@
+version: '1'
+
+volumes:
+  pg_data:
+  static:
+
+services:
+  db:
+    container_name: tracker_db
+    image: postgres:13.10
+    env_file: .env
+
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  backend:
+    container_name: tracker_backend
+    build: ./backend/trasker/
+    env_file: .env
+
+    volumes:
+      - static:/backend_static
+  frontend:
+    container_name: tracker_frontend
+
+    build: ./frontend/
+    command: cp -r /app/build/. /static/
+    env_file: .env
+    volumes:
+      - static:/static
+  gateway:
+    container_name: tracker_gateway
+    build: ./gateway/
+
+    ports:
+      - 8000:80
+    volumes:
+      - static:/static
