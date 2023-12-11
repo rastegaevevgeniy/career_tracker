@@ -17,20 +17,12 @@ class Api {
       headers: { "content-type": "application/json" },
     }).then((res) => this._checkResponse(res))
   }
-
-  getInitialRecommendations() {
-    return fetch(this._url + "/tracker/recommendations", {
-      method: "GET",
-      headers: this._headers
-    }).then((res) => this._checkResponse(res))
-  }
 }
 
 
 export const api = new Api({
   url: "http://127.0.0.1:8000",
   headers: {
-    // authorization: `Bearer ${localStorage.getItem("token")}`,
     "content-type": "application/json"
   }
 })

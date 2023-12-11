@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import "./ModalProgress.scss";
-import { api } from '../../utils/Api/Api';
-import { YourDataType } from '../../utils/Api/ApiConst';
 import Skills from '../Skills/Skills';
 import { CLOSE_ICON } from '../../utils/constants';
 import { closeModal } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from "../Chart/Chart";
+import { Skill } from '../../utils/Api/ApiConst';
 import {
   Typography,
   LinearProgress,
@@ -15,27 +14,12 @@ import {
   SvgIcon,
 } from '@mui/material';
 
-  const dataSkills = [
-    {
-      p: 'Пройденные курсы',
-      color: { backgroundColor: '#87CC9E', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz', 'ofgaorf', 'fddgvna;ijnv;osnhdiouv;iabv']
-    },
-    {
-      p: 'Текущие курсы',
-      color: { backgroundColor: '#ACCCFF', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    },
-    {
-      p: 'Рекомендовано',
-      color: { backgroundColor: '#FFDDE5', borderRadius: '6px' },
-      name: ['Экономика и бизнес-модель продукта', 'dfyz']
-    }
-  ];
+interface SkillsProps {
+  dataSkillsProgress: Skill[];
+}
 
 
-const ModalProgress: React.FC = () => {
-  const [dataUser, setDataUser] = useState<YourDataType[] | null>(null);
+const ModalProgress: React.FC<SkillsProps> = ({ dataSkillsProgress }) => {
 
   interface RootState {
     isProgressModalOpen: boolean;
@@ -43,13 +27,6 @@ const ModalProgress: React.FC = () => {
 
   const dispatch = useDispatch();
   const isProgressModalOpen = useSelector((state: RootState) => state.isProgressModalOpen);
-
-  useEffect(() => {
-    api
-      .getInitialTracker()
-      .then((data) => setDataUser(data))
-      .catch((err) => console.log(`Ошибка ${err}`))
-  }, [])
 
   const styleModal = {
     height: '100%',
@@ -94,7 +71,7 @@ const ModalProgress: React.FC = () => {
               <div className='block'>
                 <div className='block__title'>
                   <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
-                  ЗП с освоенными навыками
+                    ЗП с освоенными навыками
                   </Typography>
                   <Typography id="modal-modal-description" sx={{
                     fontFamily: 'Yandex Sans Text, Arial, sans-serif',
@@ -119,27 +96,27 @@ const ModalProgress: React.FC = () => {
                       gridColumn: '1 / 2',
                     }}
                   />
-                  <Typography 
-                    variant="caption" 
-                    sx={{ 
-                      fontFamily: 'Yandex Sans Text, Arial, sans-serif', 
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontFamily: 'Yandex Sans Text, Arial, sans-serif',
                       color: '#1A1B22',
                       fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: '1.25',
-                      paddingLeft: '8px', 
-                      gridColumn: '2 / 3' 
+                      paddingLeft: '8px',
+                      gridColumn: '2 / 3'
                     }}>
                     250 к
                   </Typography>
                 </Box>
-                </div>
-              <Skills dataSkills = {dataSkills}/>
+              </div>
+              <Skills dataSkills={dataSkillsProgress} />
             </Box>
-        </Box>
-      </Modal>
-    }
+          </Box>
+        </Modal>
+      }
     </div>
   );
 };

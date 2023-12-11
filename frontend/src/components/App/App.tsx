@@ -6,7 +6,7 @@ import Main from "../Main/Main";
 import Menu from "../Menu/Menu";
 import ModalSkill from "../ModalSkill/ModalSkill";
 import ModalProgress from "../ModalProgress/ModalProgress";
-import { YourDataType, Skill } from '../../utils/Api/ApiConst';
+import { YourDataType } from '../../utils/Api/ApiConst';
 import { api } from '../../utils/Api/Api';
 
 
@@ -42,9 +42,27 @@ export default function App() {
     },
     {
       p: `Рекомендованные  \nкурсы`,
-      color: { backgroundColor: '#F3F3F3', borderRadius: '6px' },
+      color: { backgroundColor: '#DDE0E4', borderRadius: '6px' },
       name: recommendation
     },
+  ];
+
+  const dataSkillsProgress = [
+    {
+      p: 'Пройденные курсы',
+      color: { backgroundColor: '#87CC9E', borderRadius: '6px' },
+      name: ['Экономика и бизнес-модель продукта']
+    },
+    {
+      p: 'Текущие курсы',
+      color: { backgroundColor: '#ACCCFF', borderRadius: '6px' },
+      name: newArray
+    },
+    {
+      p: 'Рекомендовано',
+      color: { backgroundColor: '#DDE0E4', borderRadius: '6px' },
+      name: recommendation
+    }
   ];
 
   useEffect(() => {
@@ -66,7 +84,7 @@ export default function App() {
         <Route path="/recommendations" element={<Main />} />
       </Routes>
       <ModalSkill dataSkills={dataSkills} />
-      <ModalProgress />
+      <ModalProgress dataSkillsProgress={dataSkillsProgress} />
     </div>
   )
 }

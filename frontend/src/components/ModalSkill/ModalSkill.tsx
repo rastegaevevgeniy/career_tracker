@@ -61,7 +61,7 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
             <Box sx={styleSkills}>
               <div className='block'>
                 <div className='block__title'>
-                  <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
+                  <Typography variant="caption" className="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
                     Твоя цель
                   </Typography>
                   <Typography id="modal-modal-description" sx={{
@@ -105,11 +105,11 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
               </div>
               <Skills dataSkills={dataSkills} />
               <div className='block'>
-                <Typography variant="caption" display="block"
+                <Typography variant="caption" className="block"
                   sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
                   Осталось учиться
                 </Typography>
-                <Typography variant="caption" display="block"
+                <Typography variant="caption" className="block"
                   sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
                   3 месяца из 12
                 </Typography>

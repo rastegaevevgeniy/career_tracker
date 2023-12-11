@@ -16,7 +16,7 @@ const Skills: React.FC<SkillsProps> = ({ dataSkills }) => {
     <div>
       {dataSkills.map((item, index) => (
         <div key={index} className='block__skill'>
-          <Typography variant="caption" display="block__title"
+          <Typography variant="caption" className="block__title"
             sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line' }}>
             {typeof item === 'object' ? item.p : item}
           </Typography>
@@ -26,8 +26,8 @@ const Skills: React.FC<SkillsProps> = ({ dataSkills }) => {
 
               {Array.isArray(item.name) ?
                 item.name.map((el, idx) => (
-                  <Grid item xs="auto">
-                    <ListItem key={idx} sx={typeof item === 'object' ? item.color :
+                  <Grid item xs="auto" key={idx}>
+                    <ListItem sx={typeof item === 'object' ? item.color :
                       undefined}>
                       {el}
                     </ListItem>
