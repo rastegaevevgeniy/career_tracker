@@ -21,7 +21,7 @@ class Api {
 
 
 export const api = new Api({
-  url: "http://127.0.0.1:8000",
+  // url: "http://127.0.0.1:8000",
   headers: {
     "content-type": "application/json"
   }
