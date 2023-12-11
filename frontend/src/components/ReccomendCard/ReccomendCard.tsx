@@ -16,19 +16,19 @@ const ReccomendCard: React.FC<ReccomendCardProps> = ({ name, duration, level, ti
   return (
     <div className="reccomend-card">
         <div className="reccomend-card__info">
-          <Typography component="h3">{name}</Typography>
+          <Typography component="h3" className="reccomend-card__text">{name}</Typography>
           <SvgIcon style={{ fontSize: '4px' }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none">
               <circle cx="2" cy="2" r="2" fill="#D9D9D9" />
             </svg>
           </SvgIcon>
-          <Typography>{duration}</Typography>
+          <Typography className="reccomend-card__text">{duration}</Typography>
           <SvgIcon style={{ fontSize: '4px' }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none">
               <circle cx="2" cy="2" r="2" fill="#D9D9D9" />
             </svg>
           </SvgIcon>
-          <Typography>{level}</Typography>
+          <Typography className="reccomend-card__text">{level}</Typography>
         </div>
         <Typography variant="h6" className="reccomend-card__title">
           {title}

@@ -4,11 +4,15 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../redux/actions';
+import { openProgressModal } from '../../redux/actions';
 
 const ProgressBlock: React.FC = () => {
 
   const dispatch = useDispatch();
+
+  const openProgress = () => {
+    dispatch(openProgressModal());
+  };
   
   return (
     <Box className='progress-block'>
@@ -17,7 +21,7 @@ const ProgressBlock: React.FC = () => {
         <Typography variant="h1" className='progress-block__progress'>60%</Typography>
         <Typography className='progress-block__text'>Навыков освоено</Typography>
         <Button
-          onClick={() => dispatch(openModal())}
+          onClick={openProgress}
           variant="contained" 
           className='progress-block__button' 
           color="primary">

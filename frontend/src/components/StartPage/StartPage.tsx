@@ -1,8 +1,9 @@
 import React from 'react';
 import "./StartPage.scss";
 
+
 const StartPage: React.FC = () => {
-  
+
   return (
     <div className='startPage'>
       <div className='startPage__image'></div>

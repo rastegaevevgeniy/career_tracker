@@ -4,11 +4,15 @@ import { Button, Card, CardContent, Typography, Box, SvgIcon } from '@mui/materi
 import './UserProfile.scss';
 import { PROFILE_ICON } from "../../utils/constants";
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../redux/actions';
+import { openSkillsModal } from '../../redux/actions';
 
 const UserProfile: React.FC = () => {
 
   const dispatch = useDispatch();
+
+  const openSkills = () => {
+    dispatch(openSkillsModal());
+  };
 
   return (
     <Card className="user-profile" style={{ borderRadius: 8 }}>
@@ -27,7 +31,7 @@ const UserProfile: React.FC = () => {
         <Typography variant="body2" component="p">
           Middle аналитик
         </Typography>
-        <Button variant="contained" color="primary" onClick={() => dispatch(openModal())}>
+        <Button variant="contained" color="primary" onClick={openSkills}>
           Смотреть навыки &rarr;
         </Button>
       </CardContent>

@@ -1,10 +1,12 @@
-import React from 'react';
-import "./ModalSkill.scss";
-import { Skill } from '../../utils/Api/ApiConst';
+import React, { useEffect, useState } from 'react';
+import "./ModalProgress.scss";
+import { api } from '../../utils/Api/Api';
+import { YourDataType } from '../../utils/Api/ApiConst';
 import Skills from '../Skills/Skills';
 import { CLOSE_ICON } from '../../utils/constants';
 import { closeModal } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Chart from "../Chart/Chart";
 import {
   Typography,
   LinearProgress,
@@ -13,19 +15,44 @@ import {
   SvgIcon,
 } from '@mui/material';
 
-const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
-  const { dataSkills } = props;
+  const dataSkills = [
+    {
+      p: 'Пройденные курсы',
+      color: { backgroundColor: '#87CC9E', borderRadius: '6px' },
+      name: ['Экономика и бизнес-модель продукта', 'dfyz', 'ofgaorf', 'fddgvna;ijnv;osnhdiouv;iabv']
+    },
+    {
+      p: 'Текущие курсы',
+      color: { backgroundColor: '#ACCCFF', borderRadius: '6px' },
+      name: ['Экономика и бизнес-модель продукта', 'dfyz']
+    },
+    {
+      p: 'Рекомендовано',
+      color: { backgroundColor: '#FFDDE5', borderRadius: '6px' },
+      name: ['Экономика и бизнес-модель продукта', 'dfyz']
+    }
+  ];
 
+
+const ModalProgress: React.FC = () => {
+  const [dataUser, setDataUser] = useState<YourDataType[] | null>(null);
 
   interface RootState {
-    isSkillsModalOpen: boolean;
+    isProgressModalOpen: boolean;
   }
 
   const dispatch = useDispatch();
-  const isSkillsModalOpen = useSelector((state: RootState) => state.isSkillsModalOpen);
+  const isProgressModalOpen = useSelector((state: RootState) => state.isProgressModalOpen);
+
+  useEffect(() => {
+    api
+      .getInitialTracker()
+      .then((data) => setDataUser(data))
+      .catch((err) => console.log(`Ошибка ${err}`))
+  }, [])
 
   const styleModal = {
-    height: '821px',
+    height: '100%',
     right: '0',
     position: 'absolute',
     width: "936px",
@@ -38,20 +65,20 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
     bgcolor: '#FFF',
     borderRadius: '10px',
     padding: '14px',
-    height: '686px',
+    marginBottom: '24px',
   }
 
   return (
     <div className='x'>
-      {isSkillsModalOpen !== undefined &&
+      {isProgressModalOpen !== undefined &&
         <Modal
-          open={isSkillsModalOpen}
+          open={isProgressModalOpen}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box sx={styleModal}>
             <div className='title'>
-              <h2 className='title__text'>Навыки</h2>
+              <h2 className='title__text'>Прогресс</h2>
               <button className='title__button' onClick={() => dispatch(closeModal())}>
                 <SvgIcon>
                   {CLOSE_ICON}
@@ -60,9 +87,14 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
             </div>
             <Box sx={styleSkills}>
               <div className='block'>
+                <Chart />
+              </div>
+            </Box>
+            <Box sx={styleSkills}>
+              <div className='block'>
                 <div className='block__title'>
                   <Typography variant="caption" display="block" sx={{ fontSize: '0.84rem', color: '#909099' }}>
-                    Твоя цель
+                  ЗП с освоенными навыками
                   </Typography>
                   <Typography id="modal-modal-description" sx={{
                     fontFamily: 'Yandex Sans Text, Arial, sans-serif',
@@ -72,7 +104,7 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
                     lineHeight: '24px',
                     paddingTop: "8px",
                   }} variant="h6" gutterBottom>
-                    Middle
+                    150 000 ₽
                   </Typography>
                 </div>
                 <Box sx={{ display: 'grid', gridTemplateColumns: '1fr max-content', alignItems: 'center', width: '572px' }}>
@@ -87,39 +119,29 @@ const ModalSkill: React.FC<{ dataSkills: Skill[] }> = (props) => {
                       gridColumn: '1 / 2',
                     }}
                   />
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      fontFamily: 'Yandex Sans Text, Arial, sans-serif',
+                  <Typography 
+                    variant="caption" 
+                    sx={{ 
+                      fontFamily: 'Yandex Sans Text, Arial, sans-serif', 
                       color: '#1A1B22',
-                      gridColumn: '2 / 3',
                       fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: '1.25',
-                      paddingLeft: '8px'
+                      paddingLeft: '8px', 
+                      gridColumn: '2 / 3' 
                     }}>
-                    60%
+                    250 к
                   </Typography>
                 </Box>
-              </div>
-              <Skills dataSkills={dataSkills} />
-              <div className='block'>
-                <Typography variant="caption" display="block"
-                  sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
-                  Осталось учиться
-                </Typography>
-                <Typography variant="caption" display="block"
-                  sx={{ fontSize: '16px', fontWeight: 400, lineHeight: '20px', minWidth: '254px', whiteSpace: 'pre-line', margin: '24px 0 165px' }} >
-                  3 месяца из 12
-                </Typography>
-              </div>
+                </div>
+              <Skills dataSkills = {dataSkills}/>
             </Box>
-          </Box>
-        </Modal>
-      }
+        </Box>
+      </Modal>
+    }
     </div>
   );
 };
 
-export default ModalSkill;
+export default ModalProgress;
